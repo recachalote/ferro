@@ -30,6 +30,10 @@
         bar: 20, plates: [25, 20, 15, 10, 5, 2.5, 1.25],
         targets: JSON.parse(JSON.stringify(DEFAULT_TARGETS)),
         proteinGoal: null,
+        backup: {
+          enabled: false, repo: '', branch: 'main', intervalHours: 24,
+          last: null, lastStatus: '', lastError: '', lastAttempt: null, lastBytes: 0,
+        },
       },
       customExercises: [],
       favorites: [],
@@ -59,7 +63,9 @@
     // settings
     if (s.settings) Object.keys(d.settings).forEach(function (k) {
       if (s.settings[k] !== undefined) {
-        out.settings[k] = (k === 'targets' && s.settings.targets) ? Object.assign({}, d.settings.targets, s.settings.targets) : s.settings[k];
+        if (k === 'targets') out.settings[k] = Object.assign({}, d.settings.targets, s.settings.targets || {});
+        else if (k === 'backup') out.settings[k] = Object.assign({}, d.settings.backup, s.settings.backup || {});
+        else out.settings[k] = s.settings[k];
       }
     });
     ['customExercises', 'favorites', 'folders', 'routines', 'workouts', 'weights', 'measurements', 'photos', 'checkins'].forEach(function (k) {
@@ -404,6 +410,7 @@
     if (meta.bodyweight) DB.addWeight(U.todayKey(), meta.bodyweight, true);
     var prs = C.detectPRs(workout, state.workouts.slice(1), DB.exercise);
     DB.save();
+    if (F.backup && F.backup.maybeAuto) { try { F.backup.maybeAuto('treino'); } catch (e) {} }
     return { workout: workout, prs: prs };
   };
   DB.deleteWorkout = function (id) {
@@ -625,8 +632,11 @@
   DB.markOnboarded = function () { state.meta.onboarded = true; DB.save(); };
 
   /* ---------- export / import ---------- */
+  DB.serialize = function () {
+    return JSON.stringify({ app: 'ferro', version: 2, exportedAt: U.now(), state: state });
+  };
   DB.exportAll = async function (includePhotos) {
-    var payload = { app: 'ferro', version: 2, exportedAt: U.now(), state: state };
+    var payload = JSON.parse(DB.serialize());
     if (includePhotos && state.photos.length) {
       payload.photos = [];
       for (var i = 0; i < state.photos.length; i++) {
@@ -666,7 +676,7 @@
   };
   DB.resetAll = function () {
     try {
-      [KEY, BACKUP_KEY, BACKUP_DATE, SETTINGS_KEY].forEach(function (k) { localStorage.removeItem(k); });
+      [KEY, BACKUP_KEY, BACKUP_DATE, SETTINGS_KEY, 'ferro:gh_token'].forEach(function (k) { localStorage.removeItem(k); });
     } catch (e) {}
     U.idb.clear().catch(function () {});
     state = defaults();

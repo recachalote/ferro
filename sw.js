@@ -1,5 +1,5 @@
 /* Ferro — service worker (offline) */
-const CACHE = 'ferro-v2';
+const CACHE = 'ferro-v3';
 const ASSETS = [
   './',
   'index.html',
@@ -15,6 +15,7 @@ const ASSETS = [
   'js/core/charts.js',
   'js/core/timer.js',
   'js/core/ui.js',
+  'js/core/backup.js',
   'js/data/exercises.js',
   'js/data/programs.js',
   'js/views/home.js',

@@ -176,6 +176,131 @@
 
   function openInstallHint() { F.app.install(); }
 
+  function backupSheet() {
+    var b = F.backup.status();
+    var hasToken = F.backup.hasToken();
+    var enabled = !!b.enabled;
+    function statusHtml(st) {
+      if (!st.configured) return '<div class="mini">Ainda não configurado. Preenche o repositório e o token.</div>';
+      var html = '<div class="mini">Último backup: <b>' + (st.last ? U.relative(st.last) : 'nunca') + '</b>';
+      if (st.lastStatus === 'error') html += '<div style="color:var(--danger);margin-top:4px">' + U.esc(st.lastError || 'Erro') + '</div>';
+      else if (st.lastBytes) html += ' · <span style="opacity:.7">' + Math.max(1, Math.round(st.lastBytes / 1024)) + ' KB</span>';
+      html += '</div>';
+      if (!st.enabled) html += '<div class="mini" style="margin-top:4px;color:var(--warn)">Backup automático desligado.</div>';
+      return html;
+    }
+    var s = UI.sheet({
+      title: 'Backup automático',
+      sub: 'Repositório privado no GitHub',
+      tall: true,
+      body:
+        '<div class="card flat" style="padding:12px;margin-bottom:12px"><div class="mini" style="line-height:1.5">Os treinos são enviados para um repositório <b>privado</b> teu. O token fica guardado apenas neste iPhone. As <b>fotos</b> não vão neste backup — usa a exportação manual para as incluir.</div></div>' +
+        '<div class="field"><label class="label">Repositório</label><input class="input" id="bk-repo" value="' + U.esc(b.repo || 'recachalote/ferro-backup') + '" placeholder="recachalote/ferro-backup" autocapitalize="off" autocorrect="off" spellcheck="false"></div>' +
+        '<div class="field"><label class="label">Token do GitHub</label><input class="input" id="bk-token" type="password" placeholder="' + (hasToken ? '•••••••• (guardado — deixa vazio para manter)' : 'github_pat_…') + '" autocapitalize="off" autocorrect="off" spellcheck="false">' +
+        '<div class="field-hint">Fine-grained token só com <b>Contents: Read and write</b> no repositório de backup.</div></div>' +
+        '<div class="field"><label class="label">Branch</label><input class="input" id="bk-branch" value="' + U.esc(b.branch || 'main') + '" autocapitalize="off" spellcheck="false"></div>' +
+        '<div class="row between" style="padding:8px 0 12px"><div><div class="card-title">Ativar backup automático</div><div class="card-sub">Após cada treino e uma vez por dia</div></div><button class="switch ' + (enabled ? 'on' : '') + '" id="bk-enable" aria-label="Ativar"></button></div>' +
+        '<div class="card flat" id="bk-status" style="padding:12px">' + statusHtml(b) + '</div>' +
+        '<div class="btn-row mt-12"><button class="btn btn-sm btn-soft" id="bk-test">' + U.svg('check') + 'Testar</button><button class="btn btn-sm btn-soft" id="bk-now">' + U.svg('upload') + 'Backup agora</button></div>' +
+        '<div class="btn-row mt-8"><button class="btn btn-sm btn-ghost" id="bk-restore">' + U.svg('download') + 'Restaurar do GitHub</button>' + (hasToken ? '<button class="btn btn-sm btn-ghost danger" id="bk-clear">' + U.svg('trash') + 'Remover token</button>' : '') + '</div>' +
+        '<div class="sec-head mt-16"><div class="sec-title">Como criar o token</div></div>' +
+        '<ol class="mini" style="line-height:1.65;padding-left:18px;margin:0">' +
+        '<li>GitHub → Settings → Developer settings → <b>Fine-grained tokens</b> → Generate new token.</li>' +
+        '<li>Repository access: <b>Only select repositories</b> → <code>ferro-backup</code>.</li>' +
+        '<li>Repository permissions → <b>Contents: Read and write</b> (o resto fica sem acesso).</li>' +
+        '<li>Generate token e cola no campo acima.</li></ol>' +
+        '<div class="mini mt-8">O repositório privado <code>recachalote/ferro-backup</code> já está criado.</div>',
+      foot: '<button class="btn btn-primary btn-block" id="bk-save">Guardar configuração</button>',
+      onMount: function (x) {
+        var statusEl = x.body.querySelector('#bk-status');
+        var enableBtn = x.body.querySelector('#bk-enable');
+        enableBtn.addEventListener('click', function () {
+          enabled = !enabled;
+          enableBtn.classList.toggle('on', enabled);
+        });
+        function collect() {
+          return {
+            repo: x.body.querySelector('#bk-repo').value.trim(),
+            token: x.body.querySelector('#bk-token').value.trim(),
+            branch: x.body.querySelector('#bk-branch').value.trim() || 'main',
+            enabled: enabled,
+          };
+        }
+        function save(close) {
+          var v = collect();
+          if (!/^[\w.-]+\/[\w.-]+$/.test(v.repo)) { UI.toast('Repositório inválido. Usa owner/repo.', 'err'); return false; }
+          if (!v.token && !F.backup.hasToken()) { UI.toast('Falta o token do GitHub.', 'err'); return false; }
+          var patch = { repo: v.repo, branch: v.branch, enabled: v.enabled };
+          if (v.token) patch.token = v.token;
+          F.backup.saveConfig(patch);
+          x.body.querySelector('#bk-token').value = '';
+          if (close) {
+            x.close();
+            UI.toast('Backup configurado');
+            F.app.refresh();
+          } else {
+            statusEl.innerHTML = statusHtml(F.backup.status());
+          }
+          return true;
+        }
+        x.root.querySelector('#bk-save').addEventListener('click', function () { save(true); });
+        x.body.querySelector('#bk-test').addEventListener('click', function () {
+          if (!save(false)) return;
+          statusEl.innerHTML = '<div class="mini">A testar ligação…</div>';
+          F.backup.test().then(function (r) {
+            var msg = 'Ligação OK a <b>' + U.esc(r.fullName) + '</b>.';
+            if (!r.isPrivate) msg += '<div style="color:var(--danger);margin-top:4px">Atenção: o repositório é público. Os dados ficariam visíveis.</div>';
+            else if (!r.canPush) msg += '<div style="color:var(--warn);margin-top:4px">O token não parece ter permissão de escrita.</div>';
+            statusEl.innerHTML = '<div class="mini">' + msg + '</div>';
+          }).catch(function (e) {
+            statusEl.innerHTML = '<div class="mini" style="color:var(--danger)">' + U.esc(e.message) + '</div>';
+          });
+        });
+        x.body.querySelector('#bk-now').addEventListener('click', function () {
+          if (!save(false)) return;
+          statusEl.innerHTML = '<div class="mini">A enviar backup…</div>';
+          F.backup.backupNow('manual').then(function (r) {
+            statusEl.innerHTML = statusHtml(F.backup.status());
+            UI.toast('Backup enviado (' + Math.max(1, Math.round(r.bytes / 1024)) + ' KB)');
+          }).catch(function (e) {
+            statusEl.innerHTML = statusHtml(F.backup.status());
+            UI.toast(e.message, 'err');
+          });
+        });
+        x.body.querySelector('#bk-restore').addEventListener('click', function () {
+          if (!save(false)) return;
+          UI.confirm({
+            title: 'Restaurar do GitHub?',
+            message: 'Os dados atuais deste iPhone serão substituídos pelo último backup do repositório.',
+            confirmText: 'Restaurar',
+            danger: true,
+          }).then(function (ok) {
+            if (!ok) return;
+            statusEl.innerHTML = '<div class="mini">A restaurar…</div>';
+            F.backup.restore().then(function (res) {
+              x.close();
+              UI.toast(res.workouts + ' treinos restaurados');
+              F.app.go('/');
+            }).catch(function (e) {
+              statusEl.innerHTML = '<div class="mini" style="color:var(--danger)">' + U.esc(e.message) + '</div>';
+            });
+          });
+        });
+        var clearBtn = x.body.querySelector('#bk-clear');
+        if (clearBtn) clearBtn.addEventListener('click', function () {
+          UI.confirm({ title: 'Remover token?', message: 'O backup automático fica desligado até voltares a colar um token.', confirmText: 'Remover', danger: true }).then(function (ok) {
+            if (!ok) return;
+            F.backup.clearToken();
+            x.close();
+            UI.toast('Token removido');
+            F.app.refresh();
+          });
+        });
+      },
+    });
+    return s;
+  }
+
   function settingsView() {
     var s = DB.settings;
     var st = DB.stats();
@@ -213,6 +338,13 @@
       '<button class="set-row" data-open="install">' + U.svg('download') +
       '<div class="set-row-main"><div class="set-row-t">Instalar no iPhone</div><div class="set-row-s">' + (U.isStandalone() ? 'Já estás a usar como app' : 'Adicionar ao ecrã principal') + '</div></div>' + U.svg('right') + '</button>');
 
+    var backupCfg = s.backup || {};
+    var backupGroup = group('Backup automático',
+      '<button class="set-row" data-open="backup">' + U.svg('upload') +
+      '<div class="set-row-main"><div class="set-row-t">' + (backupCfg.enabled && backupCfg.repo ? 'Backup ativo' : 'Configurar backup no GitHub') + '</div>' +
+      '<div class="set-row-s">' + (backupCfg.repo ? U.esc(backupCfg.repo) + (backupCfg.last ? ' · ' + U.relative(backupCfg.last) : '') : 'Repositório privado · sem fotos') + '</div></div>' +
+      '<span class="badge ' + (backupCfg.enabled ? 'ok' : '') + '">' + (backupCfg.enabled ? 'ON' : 'OFF') + '</span>' + U.svg('right') + '</button>');
+
     var dataGroup = group('Os teus dados',
       '<button class="set-row" data-open="export"><span class="item-thumb" style="width:28px;height:28px;background:transparent;border:0;color:var(--accent-text)">' + U.svg('download') + '</span>' +
       '<div class="set-row-main"><div class="set-row-t">Exportar backup completo</div><div class="set-row-s">JSON com treinos, rotinas, corpo e fotos</div></div>' + U.svg('right') + '</button>' +
@@ -238,7 +370,7 @@
         return '<div class="target-row"><div class="tn">' + UI.muscleDot(m) + C.muscle(m).label + '</div><span class="set-row-v">' + s.targets[m] + ' séries</span></div>';
       }).join('') +
       '<button class="set-row" data-open="targets"><div class="set-row-main"><div class="set-row-t">Editar objetivos</div></div>' + U.svg('right') + '</button></div>' +
-      display + dataGroup +
+      display + backupGroup + dataGroup +
       '<div class="center mini" style="opacity:.5;line-height:1.6;padding:10px 0 30px">FERRO 1.0 · Feito para iPhone<br>Tudo incluído, para sempre.</div>' +
       '</div></div>';
 
@@ -298,6 +430,7 @@
           }
           if (a === 'targets') targetsSheet();
           if (a === 'plates') platesSheet();
+          if (a === 'backup') backupSheet();
           if (a === 'install') openInstallHint();
           if (a === 'notify') {
             if (typeof Notification === 'undefined') { UI.toast('Não suportado neste dispositivo', 'err'); return; }

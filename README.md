@@ -90,6 +90,7 @@ sem internet e em ecrã inteiro, como uma app.
 - 100% **offline** depois da primeira visita; instalável no ecrã principal.
 - **Sem contas, sem paywalls, sem analytics.**
 - Exportação **JSON** completa (com fotos) e **CSV** dos treinos.
+- **Backup automático** opcional para um repositório **privado no GitHub** (dados; as fotos vão na exportação manual).
 - Importação de backup, cópia de segurança automática diária e reposição total.
 - Tema escuro e claro, unidades **kg/lb**, semana a começar à segunda ou domingo,
   objetivo semanal e séries-alvo por músculo.

@@ -208,6 +208,7 @@
 
   function boot() {
     DB.init();
+    if (F.backup) F.backup.init();
     App.buildTabbar();
     window.addEventListener('hashchange', App.render);
     document.addEventListener('click', globalClick);
