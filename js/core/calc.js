@@ -9,35 +9,35 @@
 
   /* ---------- metadados ---------- */
   C.MUSCLES = {
-    chest: { label: 'Peito', color: '#FF7A6B', group: 'push' },
-    back: { label: 'Costas', color: '#6FB8FF', group: 'pull' },
-    shoulders: { label: 'Ombros', color: '#FFC65C', group: 'push' },
-    biceps: { label: 'Bíceps', color: '#A99BFF', group: 'pull' },
-    triceps: { label: 'Tríceps', color: '#7DE0C3', group: 'push' },
-    forearms: { label: 'Antebraços', color: '#8FA0B5', group: 'pull' },
-    quads: { label: 'Quadríceps', color: '#C9F45A', group: 'legs' },
-    hamstrings: { label: 'Isquiotibiais', color: '#5BD1A6', group: 'legs' },
-    glutes: { label: 'Glúteos', color: '#FF9BC4', group: 'legs' },
-    calves: { label: 'Gémeos', color: '#E8D06B', group: 'legs' },
-    abs: { label: 'Abdominais', color: '#FFA36B', group: 'core' },
-    lowerback: { label: 'Lombar', color: '#9EB3C8', group: 'core' },
-    traps: { label: 'Trapézios', color: '#B8C46E', group: 'pull' },
-    neck: { label: 'Pescoço', color: '#C2AFA8', group: 'core' },
-    fullbody: { label: 'Corpo inteiro', color: '#D6DCE5', group: 'full' },
+    chest: { label: 'Chest', color: '#FF7A6B', group: 'push' },
+    back: { label: 'Back', color: '#6FB8FF', group: 'pull' },
+    shoulders: { label: 'Shoulders', color: '#FFC65C', group: 'push' },
+    biceps: { label: 'Biceps', color: '#A99BFF', group: 'pull' },
+    triceps: { label: 'Triceps', color: '#7DE0C3', group: 'push' },
+    forearms: { label: 'Forearms', color: '#8FA0B5', group: 'pull' },
+    quads: { label: 'Quads', color: '#C9F45A', group: 'legs' },
+    hamstrings: { label: 'Hamstrings', color: '#5BD1A6', group: 'legs' },
+    glutes: { label: 'Glutes', color: '#FF9BC4', group: 'legs' },
+    calves: { label: 'Calves', color: '#E8D06B', group: 'legs' },
+    abs: { label: 'Abs', color: '#FFA36B', group: 'core' },
+    lowerback: { label: 'Lower back', color: '#9EB3C8', group: 'core' },
+    traps: { label: 'Traps', color: '#B8C46E', group: 'pull' },
+    neck: { label: 'Neck', color: '#C2AFA8', group: 'core' },
+    fullbody: { label: 'Full body', color: '#D6DCE5', group: 'full' },
   };
   C.MUSCLE_ORDER = ['chest', 'back', 'shoulders', 'biceps', 'triceps', 'forearms', 'quads', 'hamstrings', 'glutes', 'calves', 'abs', 'lowerback', 'traps', 'neck', 'fullbody'];
   C.EQUIP = {
-    barbell: 'Barra', dumbbell: 'Halteres', machine: 'Máquina', cable: 'Cabo', smith: 'Smith',
-    ezbar: 'Barra EZ', kettlebell: 'Kettlebell', bodyweight: 'Peso corporal', bands: 'Elásticos',
-    plate: 'Disco', cardio: 'Cardio', other: 'Outro',
+    barbell: 'Barbell', dumbbell: 'Dumbbells', machine: 'Machine', cable: 'Cable', smith: 'Smith',
+    ezbar: 'EZ bar', kettlebell: 'Kettlebell', bodyweight: 'Bodyweight', bands: 'Bands',
+    plate: 'Plate', cardio: 'Cardio', other: 'Other',
   };
-  C.LEVEL = { beginner: 'Iniciante', intermediate: 'Intermédio', advanced: 'Avançado' };
-  C.MECHANIC = { compound: 'Composto', isolation: 'Isolamento', cardio: 'Cardio' };
+  C.LEVEL = { beginner: 'Beginner', intermediate: 'Intermediate', advanced: 'Advanced' };
+  C.MECHANIC = { compound: 'Compound', isolation: 'Isolation', cardio: 'Cardio' };
   C.SET_TYPES = {
     normal: { label: 'Normal', short: '' },
-    warmup: { label: 'Aquecimento', short: 'A' },
+    warmup: { label: 'Warm-up', short: 'W' },
     drop: { label: 'Drop set', short: 'D' },
-    failure: { label: 'Falha', short: 'F' },
+    failure: { label: 'Failure', short: 'F' },
   };
   C.muscle = function (k) { return C.MUSCLES[k] || { label: k, color: '#8B929E', group: 'other' }; };
 
@@ -200,7 +200,7 @@
       var now = C.prsFor([workout], id);
       if (!now.sessions) return;
       var def = lookup ? lookup(id) : null;
-      var name = def ? def.name : 'Exercício';
+      var name = def ? def.name : 'Exercise';
       if (now.maxWeight.value > prior.maxWeight.value + 0.001) {
         out.push({ exerciseId: id, name: name, type: 'weight', value: now.maxWeight.value, prev: prior.maxWeight.value, reps: now.maxWeight.reps, date: now.maxWeight.date });
       }
@@ -218,7 +218,7 @@
     return out;
   };
   C.prLabel = function (type) {
-    return { weight: 'Peso máximo', e1rm: '1RM estimado', reps: 'Repetições', volume: 'Volume da série' }[type] || type;
+    return { weight: 'Max weight', e1rm: 'Estimated 1RM', reps: 'Reps', volume: 'Set volume' }[type] || type;
   };
 
   /* ---------- histórico por exercício ---------- */
@@ -250,8 +250,8 @@
       .map(Number).filter(function (p) { return p > 0; })
       .sort(function (a, b) { return b - a; });
     var t = Number(target) || 0;
-    if (t <= 0) return { error: 'Introduz um peso.', perSide: [], achieved: bar, diff: 0, bar: bar };
-    if (t < bar) return { error: 'Abaixo do peso da barra (' + bar + ' kg).', perSide: [], achieved: bar, diff: t - bar, bar: bar };
+    if (t <= 0) return { error: 'Enter a weight.', perSide: [], achieved: bar, diff: 0, bar: bar };
+    if (t < bar) return { error: 'Below the bar weight (' + bar + ' kg).', perSide: [], achieved: bar, diff: t - bar, bar: bar };
     var side = (t - bar) / 2;
     var remaining = side, perSide = [];
     plates.forEach(function (p) {
@@ -322,10 +322,10 @@
       ((5 - stress) / 4) * 0.16
     ) * 100);
     var label, tip;
-    if (score >= 80) { label = 'Ótimo'; tip = 'Bom dia para procurar recordes. Mantém o plano.'; }
-    else if (score >= 60) { label = 'Bom'; tip = 'Treina normalmente, mas sem forçar séries de falha.'; }
-    else if (score >= 40) { label = 'Mediano'; tip = 'Reduz 1 série por exercício e mantém 2-3 reps na reserva.'; }
-    else { label = 'Baixo'; tip = 'Considera um dia leve ou descanso. Se treinares, corta 30% do volume.'; }
+    if (score >= 80) { label = 'Great'; tip = 'A good day to chase PRs. Stick to the plan.'; }
+    else if (score >= 60) { label = 'Good'; tip = 'Train as planned, but avoid taking sets to failure.'; }
+    else if (score >= 40) { label = 'Average'; tip = 'Drop one set per exercise and keep 2–3 reps in reserve.'; }
+    else { label = 'Low'; tip = 'Consider a light day or rest. If you train, cut volume by 30%.'; }
     return { score: score, label: label, tip: tip };
   };
 
@@ -381,14 +381,14 @@
   /* ---------- sugestão de progressão ---------- */
   C.suggestNext = function (lastSets, exercise) {
     var sets = (lastSets || []).filter(function (s) { return s.type !== 'warmup' && Number(s.reps) > 0; });
-    if (!sets.length) return { weight: null, reps: 8, tip: 'Primeira vez neste exercício — escolhe um peso confortável.' };
+    if (!sets.length) return { weight: null, reps: 8, tip: 'First time on this exercise — pick a comfortable weight.' };
     var top = U.maxBy(sets, function (s) { return Number(s.weight) * (1 + Number(s.reps) / 30); });
     var w = Number(top.weight) || 0, r = Number(top.reps) || 0;
     var isolation = exercise && exercise.mechanic === 'isolation';
     var inc = isolation ? 1.25 : 2.5;
-    if (!w) return { weight: null, reps: r + 1, tip: 'Sobe uma repetição em relação à última sessão.' };
-    if (r >= 12) return { weight: Math.round((w + inc) * 2) / 2, reps: 8, tip: 'Atingiste o topo das repetições — sobe ' + inc + ' kg e recomeça nas 8.' };
-    return { weight: w, reps: r + 1, tip: 'Mesmo peso, mais uma repetição. Progressão dupla.' };
+    if (!w) return { weight: null, reps: r + 1, tip: 'Add one rep compared with last session.' };
+    if (r >= 12) return { weight: Math.round((w + inc) * 2) / 2, reps: 8, tip: 'You hit the top of the rep range — add ' + inc + ' kg and start again at 8.' };
+    return { weight: w, reps: r + 1, tip: 'Same weight, one more rep. Double progression.' };
   };
 
   /* ---------- streaks / heat ---------- */
@@ -422,9 +422,9 @@
     return reps == null || reps === '' ? '—' : U.num(reps, dec || 0);
   };
   C.volumeTier = function (v) {
-    if (v >= 20000) return { label: 'Muito alto', cls: 'ok' };
-    if (v >= 12000) return { label: 'Alto', cls: 'ok' };
-    if (v >= 6000) return { label: 'Médio', cls: 'info' };
-    return { label: 'Baixo', cls: '' };
+    if (v >= 20000) return { label: 'Very high', cls: 'ok' };
+    if (v >= 12000) return { label: 'High', cls: 'ok' };
+    if (v >= 6000) return { label: 'Medium', cls: 'info' };
+    return { label: 'Low', cls: '' };
   };
 })();

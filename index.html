@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="pt-PT">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Ferro — Treino</title>
-<meta name="description" content="Ferro — registo de treinos de ginásio. Tudo incluído, offline, sem contas.">
+<title>Ferro — Workout</title>
+<meta name="description" content="Ferro — gym workout logging. Everything included, offline, no accounts.">
 <meta name="theme-color" content="#0A0B0D">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -93,7 +93,7 @@ try {
 <div id="app">
   <main id="view" class="view" role="main"></main>
   <div id="timer-slot" class="timer-slot" aria-live="polite"></div>
-  <nav id="tabbar" class="tabbar" aria-label="Navegação principal"></nav>
+  <nav id="tabbar" class="tabbar" aria-label="Main navigation"></nav>
 </div>
 
 <div id="overlay-root"></div>
@@ -106,7 +106,7 @@ try {
   <div class="splash-name">Ferro</div>
 </div>
 
-<noscript><p style="color:#fff;padding:24px;font-family:sans-serif">O Ferro precisa de JavaScript ativo.</p></noscript>
+<noscript><p style="color:#fff;padding:24px;font-family:sans-serif">Ferro needs JavaScript enabled.</p></noscript>
 
 <script>
 window.__ferroErrors = [];
@@ -132,6 +132,7 @@ window.addEventListener('unhandledrejection', function (e) { __ferroErr('Promise
 <script src="js/core/ui.js"></script>
 <script src="js/core/backup.js"></script>
 <script src="js/data/exercises.js"></script>
+<script src="js/data/exercises-en.js"></script>
 <script src="js/data/programs.js"></script>
 <script src="js/views/home.js"></script>
 <script src="js/views/workout.js"></script>

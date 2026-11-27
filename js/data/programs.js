@@ -1,61 +1,61 @@
-/* Programas de treino — Ferro */
+/* Training programmes — Ferro */
 window.FERRO_PROGRAMS = [
   {
     id: "fullbody3",
     name: "Full Body 3×",
-    subtitle: "Corpo inteiro, 3 dias por semana",
+    subtitle: "Full body, 3 days a week",
     level: "beginner",
     days: 3,
     weeks: 8,
-    focus: "Hipertrofia e força",
-    equipment: "Ginásio completo",
-    description: "Três sessões por semana que treinam o corpo inteiro, com ênfase nos movimentos compostos. Ideal para construir uma base sólida nos primeiros meses.",
-    progression: "Dobra progressão: quando atinges o topo do intervalo de repetições em todas as séries, sobe 2,5 kg nos exercícios de barra e 2 kg nos halteres.",
+    focus: "Hypertrophy and strength",
+    equipment: "Full gym",
+    description: "Three sessions a week that train the whole body, with an emphasis on compound movements. Ideal for building a solid base in your first few months.",
+    progression: "Double progression: when you hit the top of the rep range on every set, add 2.5 kg to barbell exercises and 2 kg to dumbbells.",
     routines: [
       {
         name: "Full Body A",
         folder: "Full Body 3×",
-        notes: "Descanso 2-3 min nos compostos e 60-90 s nos acessórios.",
+        notes: "Rest 2-3 min on the compounds and 60-90 s on the accessories.",
         exercises: [
-          { name: "Agachamento com barra", muscle: "quads", equipment: "barbell", sets: 4, reps: "6-8", rest: 180, note: "Desce até à paralela, sem perder a curvatura lombar." },
-          { name: "Supino com barra", muscle: "chest", equipment: "barbell", sets: 4, reps: "6-8", rest: 150, note: "Ombros encaixados e pés firmes no chão." },
-          { name: "Remada curvada com barra", muscle: "back", equipment: "barbell", sets: 3, reps: "8-10", rest: 120, note: "Tronco a 45°, puxa a barra ao umbigo." },
+          { name: "Agachamento livre com barra", muscle: "quads", equipment: "barbell", sets: 4, reps: "6-8", rest: 180, note: "Squat to parallel without losing your lower-back arch." },
+          { name: "Supino reto com barra", muscle: "chest", equipment: "barbell", sets: 4, reps: "6-8", rest: 150, note: "Shoulders pinned back and feet planted firmly." },
+          { name: "Remada curvada com barra", muscle: "back", equipment: "barbell", sets: 3, reps: "8-10", rest: 120, note: "Torso at 45°, row the bar to your navel." },
           { name: "Desenvolvimento com halteres", muscle: "shoulders", equipment: "dumbbell", sets: 3, reps: "8-12", rest: 90 },
-          { name: "Rosca direta com barra", muscle: "biceps", equipment: "barbell", sets: 3, reps: "10-12", rest: 60, note: "Sem balançar o tronco." },
-          { name: "Extensão de tríceps na corda", muscle: "triceps", equipment: "cable", sets: 3, reps: "10-12", rest: 60 },
+          { name: "Rosca direta com barra", muscle: "biceps", equipment: "barbell", sets: 3, reps: "10-12", rest: 60, note: "No swinging the torso." },
+          { name: "Extensão de tríceps com corda", muscle: "triceps", equipment: "cable", sets: 3, reps: "10-12", rest: 60 },
           { name: "Elevação de pernas suspenso", muscle: "abs", equipment: "bodyweight", sets: 3, reps: "10-15", rest: 60 },
-          { name: "Gémeos em pé na máquina", muscle: "calves", equipment: "machine", sets: 3, reps: "12-15", rest: 60, note: "Pausa de 1 s no topo." }
+          { name: "Elevação de gémeos em pé na máquina", muscle: "calves", equipment: "machine", sets: 3, reps: "12-15", rest: 60, note: "Pause for 1 s at the top." }
         ]
       },
       {
         name: "Full Body B",
         folder: "Full Body 3×",
-        notes: "Sessão com mais ênfase na cadeia posterior.",
+        notes: "Session with more emphasis on the posterior chain.",
         exercises: [
-          { name: "Peso morto", muscle: "hamstrings", equipment: "barbell", sets: 3, reps: "5-6", rest: 180, note: "Barra junto às pernas e coluna neutra." },
+          { name: "Peso morto convencional", muscle: "back", equipment: "barbell", sets: 3, reps: "5-6", rest: 180, note: "Bar close to the shins and a neutral spine." },
           { name: "Supino inclinado com halteres", muscle: "chest", equipment: "dumbbell", sets: 3, reps: "8-10", rest: 120 },
-          { name: "Puxada alta na polia", muscle: "back", equipment: "cable", sets: 3, reps: "8-12", rest: 90, note: "Puxa com os cotovelos, não com as mãos." },
-          { name: "Afundos com halteres", muscle: "quads", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 90, note: "Repetições por perna." },
+          { name: "Puxada frontal", muscle: "back", equipment: "cable", sets: 3, reps: "8-12", rest: 90, note: "Drive with your elbows, not your hands." },
+          { name: "Afundos com halteres", muscle: "quads", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 90, note: "Reps per leg." },
           { name: "Elevação lateral com halteres", muscle: "shoulders", equipment: "dumbbell", sets: 3, reps: "12-15", rest: 60 },
           { name: "Rosca martelo", muscle: "biceps", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 60 },
-          { name: "Flexões de braços", muscle: "chest", equipment: "bodyweight", sets: 3, reps: "AMRAP", rest: 60, note: "Corpo em prancha, sem afundar a bacia." },
-          { name: "Elevação de gémeos sentado", muscle: "calves", equipment: "machine", sets: 3, reps: "15-20", rest: 60 }
+          { name: "Flexões", muscle: "chest", equipment: "bodyweight", sets: 3, reps: "AMRAP", rest: 60, note: "Body in a plank, don't let your hips sag." },
+          { name: "Elevação de gémeos sentado na máquina", muscle: "calves", equipment: "machine", sets: 3, reps: "15-20", rest: 60 }
         ]
       },
       {
         name: "Full Body C",
         folder: "Full Body 3×",
-        notes: "Último treino da semana, com mais trabalho de isolamento.",
+        notes: "Last session of the week, with more isolation work.",
         exercises: [
-          { name: "Agachamento frontal", muscle: "quads", equipment: "barbell", sets: 3, reps: "6-8", rest: 150, note: "Cotovelos altos para manter o tronco direito." },
-          { name: "Supino com halteres", muscle: "chest", equipment: "dumbbell", sets: 3, reps: "8-10", rest: 120 },
+          { name: "Agachamento frontal com barra", muscle: "quads", equipment: "barbell", sets: 3, reps: "6-8", rest: 150, note: "Elbows high to keep your torso upright." },
+          { name: "Supino reto com halteres", muscle: "chest", equipment: "dumbbell", sets: 3, reps: "8-10", rest: 120 },
           { name: "Remada unilateral com haltere", muscle: "back", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 90 },
-          { name: "Desenvolvimento militar", muscle: "shoulders", equipment: "barbell", sets: 3, reps: "6-8", rest: 120, note: "Sem arquear a lombar." },
+          { name: "Desenvolvimento militar com barra", muscle: "shoulders", equipment: "barbell", sets: 3, reps: "6-8", rest: 120, note: "Don't arch your lower back." },
           { name: "Cadeira extensora", muscle: "quads", equipment: "machine", sets: 3, reps: "12-15", rest: 60 },
           { name: "Cadeira flexora", muscle: "hamstrings", equipment: "machine", sets: 3, reps: "12-15", rest: 60 },
           { name: "Rosca concentrada", muscle: "biceps", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 60 },
-          { name: "Extensão de tríceps acima da cabeça", muscle: "triceps", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 60 },
-          { name: "Prancha lateral", muscle: "abs", equipment: "bodyweight", sets: 3, reps: "30-40 s", rest: 45, note: "Cada lado." }
+          { name: "Extensão de tríceps atrás da cabeça com haltere", muscle: "triceps", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 60 },
+          { name: "Prancha lateral", muscle: "abs", equipment: "bodyweight", sets: 3, reps: "30-40 s", rest: 45, note: "Each side." }
         ]
       }
     ]
@@ -63,70 +63,70 @@ window.FERRO_PROGRAMS = [
   {
     id: "upperlower4",
     name: "Upper/Lower 4×",
-    subtitle: "Metade superior e inferior, 4 dias",
+    subtitle: "Upper and lower body, 4 days",
     level: "intermediate",
     days: 4,
     weeks: 10,
-    focus: "Força e hipertrofia",
-    equipment: "Ginásio completo",
-    description: "Quatro sessões que dividem o corpo em metade superior e inferior, alternando dias de força com dias de hipertrofia. Bom equilíbrio entre carga e volume.",
-    progression: "Sobe 2,5 kg nos levantamentos principais sempre que fizeres todas as séries dentro do intervalo; nos acessórios, acrescenta uma repetição por série antes de aumentar o peso.",
+    focus: "Strength and hypertrophy",
+    equipment: "Full gym",
+    description: "Four sessions that split the body into upper and lower halves, alternating strength days with hypertrophy days. A good balance between load and volume.",
+    progression: "Add 2.5 kg to the main lifts whenever you complete every set within the rep range; on accessories, add one rep per set before increasing the weight.",
     routines: [
       {
-        name: "Superior A — Força",
+        name: "Upper A — Strength",
         folder: "Upper/Lower 4×",
-        notes: "Descanso 2-3 min nos dois primeiros exercícios.",
+        notes: "Rest 2-3 min on the first two exercises.",
         exercises: [
-          { name: "Supino com barra", muscle: "chest", equipment: "barbell", sets: 4, reps: "5-6", rest: 180 },
+          { name: "Supino reto com barra", muscle: "chest", equipment: "barbell", sets: 4, reps: "5-6", rest: 180 },
           { name: "Remada curvada com barra", muscle: "back", equipment: "barbell", sets: 4, reps: "6-8", rest: 150 },
-          { name: "Desenvolvimento militar", muscle: "shoulders", equipment: "barbell", sets: 3, reps: "6-8", rest: 120 },
-          { name: "Puxada alta na polia", muscle: "back", equipment: "cable", sets: 3, reps: "8-10", rest: 90 },
+          { name: "Desenvolvimento militar com barra", muscle: "shoulders", equipment: "barbell", sets: 3, reps: "6-8", rest: 120 },
+          { name: "Puxada frontal", muscle: "back", equipment: "cable", sets: 3, reps: "8-10", rest: 90 },
           { name: "Rosca direta com barra", muscle: "biceps", equipment: "barbell", sets: 3, reps: "8-10", rest: 60 },
-          { name: "Extensão de tríceps na testa", muscle: "triceps", equipment: "ezbar", sets: 3, reps: "8-12", rest: 60 },
-          { name: "Face pull na corda", muscle: "shoulders", equipment: "cable", sets: 3, reps: "15-20", rest: 60, note: "Trabalho de saúde do ombro." }
+          { name: "Extensão de tríceps deitado com barra W", muscle: "triceps", equipment: "ezbar", sets: 3, reps: "8-12", rest: 60 },
+          { name: "Face pull", muscle: "shoulders", equipment: "cable", sets: 3, reps: "15-20", rest: 60, note: "Shoulder-health work." }
         ]
       },
       {
-        name: "Inferior A — Força",
+        name: "Lower A — Strength",
         folder: "Upper/Lower 4×",
-        notes: "Aquecimento obrigatório de 5-10 min antes do agachamento.",
+        notes: "Mandatory 5-10 min warm-up before the squat.",
         exercises: [
-          { name: "Agachamento com barra", muscle: "quads", equipment: "barbell", sets: 4, reps: "5-6", rest: 180 },
-          { name: "Peso morto romeno", muscle: "hamstrings", equipment: "barbell", sets: 3, reps: "8-10", rest: 150, note: "Empurra a bacia para trás." },
+          { name: "Agachamento livre com barra", muscle: "quads", equipment: "barbell", sets: 4, reps: "5-6", rest: 180 },
+          { name: "Peso morto romeno com barra", muscle: "hamstrings", equipment: "barbell", sets: 3, reps: "8-10", rest: 150, note: "Push your hips back." },
           { name: "Leg press", muscle: "quads", equipment: "machine", sets: 3, reps: "10-12", rest: 120 },
           { name: "Cadeira flexora", muscle: "hamstrings", equipment: "machine", sets: 3, reps: "10-12", rest: 90 },
-          { name: "Elevação de gémeos em pé", muscle: "calves", equipment: "machine", sets: 4, reps: "10-12", rest: 60 },
-          { name: "Elevação de pernas", muscle: "abs", equipment: "bodyweight", sets: 3, reps: "10-15", rest: 60 },
+          { name: "Elevação de gémeos em pé na máquina", muscle: "calves", equipment: "machine", sets: 4, reps: "10-12", rest: 60 },
+          { name: "Elevação de pernas deitado", muscle: "abs", equipment: "bodyweight", sets: 3, reps: "10-15", rest: 60 },
           { name: "Prancha frontal", muscle: "abs", equipment: "bodyweight", sets: 3, reps: "40-50 s", rest: 45 }
         ]
       },
       {
-        name: "Superior B — Hipertrofia",
+        name: "Upper B — Hypertrophy",
         folder: "Upper/Lower 4×",
-        notes: "Descanso 60-90 s; foca na ligação mente-músculo.",
+        notes: "Rest 60-90 s; focus on the mind-muscle connection.",
         exercises: [
           { name: "Supino inclinado com halteres", muscle: "chest", equipment: "dumbbell", sets: 4, reps: "8-12", rest: 120 },
-          { name: "Remada baixa na polia", muscle: "back", equipment: "cable", sets: 4, reps: "8-12", rest: 90 },
+          { name: "Remada baixa", muscle: "back", equipment: "cable", sets: 4, reps: "8-12", rest: 90 },
           { name: "Elevação lateral com halteres", muscle: "shoulders", equipment: "dumbbell", sets: 4, reps: "12-15", rest: 60 },
-          { name: "Supino na máquina", muscle: "chest", equipment: "machine", sets: 3, reps: "10-12", rest: 90 },
+          { name: "Chest press na máquina", muscle: "chest", equipment: "machine", sets: 3, reps: "10-12", rest: 90 },
           { name: "Remada unilateral com haltere", muscle: "back", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 90 },
-          { name: "Rosca alternada", muscle: "biceps", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 60 },
-          { name: "Tríceps na corda", muscle: "triceps", equipment: "cable", sets: 3, reps: "12-15", rest: 60 },
-          { name: "Encolhimento com halteres", muscle: "traps", equipment: "dumbbell", sets: 3, reps: "12-15", rest: 60 }
+          { name: "Rosca alternada com halteres", muscle: "biceps", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 60 },
+          { name: "Extensão de tríceps com corda", muscle: "triceps", equipment: "cable", sets: 3, reps: "12-15", rest: 60 },
+          { name: "Encolhimentos com halteres", muscle: "traps", equipment: "dumbbell", sets: 3, reps: "12-15", rest: 60 }
         ]
       },
       {
-        name: "Inferior B — Hipertrofia",
+        name: "Lower B — Hypertrophy",
         folder: "Upper/Lower 4×",
-        notes: "Sessão mais curta e intensa, com foco em quadríceps e gémeos.",
+        notes: "Shorter, more intense session focused on quads and calves.",
         exercises: [
-          { name: "Peso morto", muscle: "lowerback", equipment: "barbell", sets: 4, reps: "5-6", rest: 180, note: "Cada repetição começa no chão." },
-          { name: "Agachamento búlgaro", muscle: "quads", equipment: "dumbbell", sets: 3, reps: "8-10", rest: 120, note: "Repetições por perna." },
+          { name: "Peso morto convencional", muscle: "back", equipment: "barbell", sets: 4, reps: "5-6", rest: 180, note: "Every rep starts from the floor." },
+          { name: "Agachamento búlgaro com halteres", muscle: "quads", equipment: "dumbbell", sets: 3, reps: "8-10", rest: 120, note: "Reps per leg." },
           { name: "Cadeira extensora", muscle: "quads", equipment: "machine", sets: 3, reps: "12-15", rest: 60 },
-          { name: "Cadeira flexora sentado", muscle: "hamstrings", equipment: "machine", sets: 3, reps: "12-15", rest: 60 },
-          { name: "Elevação de gémeos sentado", muscle: "calves", equipment: "machine", sets: 4, reps: "15-20", rest: 60 },
-          { name: "Hiperextensão lombar", muscle: "lowerback", equipment: "machine", sets: 3, reps: "12-15", rest: 60 },
-          { name: "Abdominal na máquina", muscle: "abs", equipment: "machine", sets: 3, reps: "12-15", rest: 60 }
+          { name: "Cadeira flexora", muscle: "hamstrings", equipment: "machine", sets: 3, reps: "12-15", rest: 60 },
+          { name: "Elevação de gémeos sentado na máquina", muscle: "calves", equipment: "machine", sets: 4, reps: "15-20", rest: 60 },
+          { name: "Extensão lombar na máquina", muscle: "lowerback", equipment: "machine", sets: 3, reps: "12-15", rest: 60 },
+          { name: "Crunch na máquina", muscle: "abs", equipment: "machine", sets: 3, reps: "12-15", rest: 60 }
         ]
       }
     ]
@@ -134,97 +134,97 @@ window.FERRO_PROGRAMS = [
   {
     id: "ppl6",
     name: "Push Pull Legs 6×",
-    subtitle: "Empurrar, puxar e pernas, 6 dias",
+    subtitle: "Push, pull and legs, 6 days",
     level: "advanced",
     days: 6,
     weeks: 12,
-    focus: "Hipertrofia",
-    equipment: "Ginásio completo",
-    description: "Divisão clássica em empurrar, puxar e pernas, repetida duas vezes por semana com ênfases diferentes. Volume elevado, pensado para quem já treina há algum tempo.",
-    progression: "Sobe 2,5 kg nos compostos quando cumprires o topo do intervalo em todas as séries; a cada quatro semanas, acrescenta uma série aos principais ou uma repetição nos acessórios.",
+    focus: "Hypertrophy",
+    equipment: "Full gym",
+    description: "Classic push, pull and legs split, repeated twice a week with different emphases. High volume, aimed at people who have been training for a while.",
+    progression: "Add 2.5 kg to the compounds once you hit the top of the rep range on every set; every four weeks, add a set to the main lifts or a rep to the accessories.",
     routines: [
       {
-        name: "Empurrar A — Pesado",
+        name: "Push A — Heavy",
         folder: "Push Pull Legs 6×",
-        notes: "Dia de cargas altas no supino e no desenvolvimento.",
+        notes: "Heavy day on the bench press and overhead press.",
         exercises: [
-          { name: "Supino com barra", muscle: "chest", equipment: "barbell", sets: 4, reps: "5-6", rest: 180 },
+          { name: "Supino reto com barra", muscle: "chest", equipment: "barbell", sets: 4, reps: "5-6", rest: 180 },
           { name: "Supino inclinado com barra", muscle: "chest", equipment: "barbell", sets: 3, reps: "8-10", rest: 120 },
           { name: "Desenvolvimento com halteres", muscle: "shoulders", equipment: "dumbbell", sets: 3, reps: "8-10", rest: 120 },
           { name: "Elevação lateral com halteres", muscle: "shoulders", equipment: "dumbbell", sets: 4, reps: "12-15", rest: 60 },
-          { name: "Tríceps na corda", muscle: "triceps", equipment: "cable", sets: 3, reps: "10-12", rest: 60 },
-          { name: "Extensão de tríceps acima da cabeça", muscle: "triceps", equipment: "ezbar", sets: 3, reps: "10-12", rest: 60 },
-          { name: "Elevação frontal com disco", muscle: "shoulders", equipment: "plate", sets: 3, reps: "12-15", rest: 60 }
+          { name: "Extensão de tríceps com corda", muscle: "triceps", equipment: "cable", sets: 3, reps: "10-12", rest: 60 },
+          { name: "Extensão de tríceps atrás da cabeça com haltere", muscle: "triceps", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 60 },
+          { name: "Elevação frontal com anilha", muscle: "shoulders", equipment: "plate", sets: 3, reps: "12-15", rest: 60 }
         ]
       },
       {
-        name: "Puxar A — Pesado",
+        name: "Pull A — Heavy",
         folder: "Push Pull Legs 6×",
-        notes: "Peso morto no início, com técnica antes de carga.",
+        notes: "Deadlift first — technique before load.",
         exercises: [
-          { name: "Peso morto", muscle: "hamstrings", equipment: "barbell", sets: 3, reps: "5-6", rest: 180 },
-          { name: "Puxada alta na polia", muscle: "back", equipment: "cable", sets: 4, reps: "8-10", rest: 90 },
+          { name: "Peso morto convencional", muscle: "back", equipment: "barbell", sets: 3, reps: "5-6", rest: 180 },
+          { name: "Puxada frontal", muscle: "back", equipment: "cable", sets: 4, reps: "8-10", rest: 90 },
           { name: "Remada curvada com barra", muscle: "back", equipment: "barbell", sets: 3, reps: "8-10", rest: 120 },
           { name: "Face pull", muscle: "shoulders", equipment: "cable", sets: 3, reps: "15-20", rest: 60 },
           { name: "Rosca direta com barra", muscle: "biceps", equipment: "barbell", sets: 3, reps: "8-12", rest: 60 },
           { name: "Rosca martelo", muscle: "biceps", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 60 },
-          { name: "Encolhimento com barra", muscle: "traps", equipment: "barbell", sets: 3, reps: "12-15", rest: 60 }
+          { name: "Encolhimentos com barra", muscle: "traps", equipment: "barbell", sets: 3, reps: "12-15", rest: 60 }
         ]
       },
       {
-        name: "Pernas A",
+        name: "Legs A",
         folder: "Push Pull Legs 6×",
-        notes: "Descanso 3 min antes das séries pesadas de agachamento.",
+        notes: "Rest 3 min before the heavy back squat sets.",
         exercises: [
-          { name: "Agachamento com barra", muscle: "quads", equipment: "barbell", sets: 4, reps: "5-6", rest: 180 },
-          { name: "Peso morto romeno", muscle: "hamstrings", equipment: "barbell", sets: 3, reps: "8-10", rest: 150 },
+          { name: "Agachamento livre com barra", muscle: "quads", equipment: "barbell", sets: 4, reps: "5-6", rest: 180 },
+          { name: "Peso morto romeno com barra", muscle: "hamstrings", equipment: "barbell", sets: 3, reps: "8-10", rest: 150 },
           { name: "Leg press", muscle: "quads", equipment: "machine", sets: 3, reps: "10-12", rest: 120 },
           { name: "Cadeira flexora", muscle: "hamstrings", equipment: "machine", sets: 3, reps: "12-15", rest: 60 },
-          { name: "Elevação de gémeos em pé", muscle: "calves", equipment: "machine", sets: 4, reps: "12-15", rest: 60 },
-          { name: "Abdominal na máquina", muscle: "abs", equipment: "machine", sets: 3, reps: "12-15", rest: 60 },
+          { name: "Elevação de gémeos em pé na máquina", muscle: "calves", equipment: "machine", sets: 4, reps: "12-15", rest: 60 },
+          { name: "Crunch na máquina", muscle: "abs", equipment: "machine", sets: 3, reps: "12-15", rest: 60 },
           { name: "Prancha frontal", muscle: "abs", equipment: "bodyweight", sets: 3, reps: "45-60 s", rest: 45 }
         ]
       },
       {
-        name: "Empurrar B — Volume",
+        name: "Push B — Volume",
         folder: "Push Pull Legs 6×",
-        notes: "Cargas moderadas com mais repetições e menos descanso.",
+        notes: "Moderate loads, more reps and less rest.",
         exercises: [
-          { name: "Supino com halteres", muscle: "chest", equipment: "dumbbell", sets: 4, reps: "8-10", rest: 120 },
-          { name: "Desenvolvimento militar", muscle: "shoulders", equipment: "barbell", sets: 3, reps: "6-8", rest: 150 },
-          { name: "Crucifixo na máquina", muscle: "chest", equipment: "machine", sets: 3, reps: "10-12", rest: 60 },
-          { name: "Elevação lateral na polia", muscle: "shoulders", equipment: "cable", sets: 4, reps: "12-15", rest: 45 },
-          { name: "Flexões de braços", muscle: "chest", equipment: "bodyweight", sets: 3, reps: "AMRAP", rest: 60 },
-          { name: "Extensão de tríceps na testa", muscle: "triceps", equipment: "ezbar", sets: 3, reps: "10-12", rest: 60 },
-          { name: "Tríceps na máquina", muscle: "triceps", equipment: "machine", sets: 3, reps: "12-15", rest: 60 }
+          { name: "Supino reto com halteres", muscle: "chest", equipment: "dumbbell", sets: 4, reps: "8-10", rest: 120 },
+          { name: "Desenvolvimento militar com barra", muscle: "shoulders", equipment: "barbell", sets: 3, reps: "6-8", rest: 150 },
+          { name: "Pec deck", muscle: "chest", equipment: "machine", sets: 3, reps: "10-12", rest: 60 },
+          { name: "Elevação lateral com cabo", muscle: "shoulders", equipment: "cable", sets: 4, reps: "12-15", rest: 45 },
+          { name: "Flexões", muscle: "chest", equipment: "bodyweight", sets: 3, reps: "AMRAP", rest: 60 },
+          { name: "Extensão de tríceps deitado com barra W", muscle: "triceps", equipment: "ezbar", sets: 3, reps: "10-12", rest: 60 },
+          { name: "Extensão de tríceps na máquina", muscle: "triceps", equipment: "machine", sets: 3, reps: "12-15", rest: 60 }
         ]
       },
       {
-        name: "Puxar B — Volume",
+        name: "Pull B — Volume",
         folder: "Push Pull Legs 6×",
-        notes: "Prioriza amplitude e controlo na descida.",
+        notes: "Prioritise range of motion and control on the way down.",
         exercises: [
-          { name: "Barra fixa", muscle: "back", equipment: "bodyweight", sets: 4, reps: "6-8", rest: 120, note: "Usa assistência se não chegares às 6 repetições." },
-          { name: "Remada baixa na polia", muscle: "back", equipment: "cable", sets: 4, reps: "8-12", rest: 90 },
+          { name: "Barra fixa", muscle: "back", equipment: "bodyweight", sets: 4, reps: "6-8", rest: 120, note: "Use assistance if you can't reach 6 reps." },
+          { name: "Remada baixa", muscle: "back", equipment: "cable", sets: 4, reps: "8-12", rest: 90 },
           { name: "Remada unilateral com haltere", muscle: "back", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 90 },
-          { name: "Puxada alta com triângulo", muscle: "back", equipment: "cable", sets: 3, reps: "10-12", rest: 90 },
-          { name: "Rosca alternada", muscle: "biceps", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 60 },
-          { name: "Rosca Scott", muscle: "biceps", equipment: "ezbar", sets: 3, reps: "10-12", rest: 60 },
+          { name: "Puxada frontal com pegada fechada", muscle: "back", equipment: "cable", sets: 3, reps: "10-12", rest: 90 },
+          { name: "Rosca alternada com halteres", muscle: "biceps", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 60 },
+          { name: "Rosca Scott com barra W", muscle: "biceps", equipment: "ezbar", sets: 3, reps: "10-12", rest: 60 },
           { name: "Face pull", muscle: "shoulders", equipment: "cable", sets: 3, reps: "15-20", rest: 45 }
         ]
       },
       {
-        name: "Pernas B",
+        name: "Legs B",
         folder: "Push Pull Legs 6×",
-        notes: "Segundo treino de pernas da semana, com mais ênfase no quadríceps.",
+        notes: "Second leg session of the week, with more emphasis on the quads.",
         exercises: [
-          { name: "Agachamento frontal", muscle: "quads", equipment: "barbell", sets: 3, reps: "6-8", rest: 150 },
-          { name: "Peso morto", muscle: "hamstrings", equipment: "barbell", sets: 3, reps: "6-8", rest: 180 },
-          { name: "Afundo búlgaro", muscle: "quads", equipment: "dumbbell", sets: 3, reps: "8-10", rest: 90 },
+          { name: "Agachamento frontal com barra", muscle: "quads", equipment: "barbell", sets: 3, reps: "6-8", rest: 150 },
+          { name: "Peso morto convencional", muscle: "back", equipment: "barbell", sets: 3, reps: "6-8", rest: 180 },
+          { name: "Agachamento búlgaro com halteres", muscle: "quads", equipment: "dumbbell", sets: 3, reps: "8-10", rest: 90 },
           { name: "Cadeira extensora", muscle: "quads", equipment: "machine", sets: 3, reps: "12-15", rest: 60 },
-          { name: "Cadeira flexora sentado", muscle: "hamstrings", equipment: "machine", sets: 3, reps: "12-15", rest: 60 },
-          { name: "Elevação de gémeos sentado", muscle: "calves", equipment: "machine", sets: 4, reps: "15-20", rest: 45 },
-          { name: "Hiperextensão lombar", muscle: "lowerback", equipment: "machine", sets: 3, reps: "12-15", rest: 60 }
+          { name: "Cadeira flexora", muscle: "hamstrings", equipment: "machine", sets: 3, reps: "12-15", rest: 60 },
+          { name: "Elevação de gémeos sentado na máquina", muscle: "calves", equipment: "machine", sets: 4, reps: "15-20", rest: 45 },
+          { name: "Extensão lombar na máquina", muscle: "lowerback", equipment: "machine", sets: 3, reps: "12-15", rest: 60 }
         ]
       }
     ]
@@ -232,69 +232,69 @@ window.FERRO_PROGRAMS = [
   {
     id: "pushpull4",
     name: "Push Pull 4×",
-    subtitle: "Empurrar e puxar, 4 dias",
+    subtitle: "Push and pull, 4 days",
     level: "intermediate",
     days: 4,
     weeks: 10,
-    focus: "Hipertrofia",
-    equipment: "Ginásio completo",
-    description: "Duas sessões de empurrar e duas de puxar por semana, alternando um dia pesado com outro de mais volume. Simples de organizar e fácil de recuperar.",
-    progression: "Progride 2,5 kg nos exercícios de barra quando fizeres todas as séries no topo do intervalo e, nos acessórios, acrescenta uma repetição por série antes de subir o peso.",
+    focus: "Hypertrophy",
+    equipment: "Full gym",
+    description: "Two push and two pull sessions a week, alternating a heavy day with a higher-volume one. Simple to organise and easy to recover from.",
+    progression: "Add 2.5 kg to barbell exercises when you hit the top of the rep range on every set, and on accessories add one rep per set before increasing the weight.",
     routines: [
       {
-        name: "Empurrar A",
+        name: "Push A",
         folder: "Push Pull 4×",
-        notes: "Dia pesado de peito e ombro.",
+        notes: "Heavy chest and shoulder day.",
         exercises: [
-          { name: "Supino com barra", muscle: "chest", equipment: "barbell", sets: 4, reps: "5-6", rest: 180 },
+          { name: "Supino reto com barra", muscle: "chest", equipment: "barbell", sets: 4, reps: "5-6", rest: 180 },
           { name: "Supino inclinado com halteres", muscle: "chest", equipment: "dumbbell", sets: 3, reps: "8-10", rest: 120 },
-          { name: "Desenvolvimento militar", muscle: "shoulders", equipment: "barbell", sets: 3, reps: "6-8", rest: 150 },
+          { name: "Desenvolvimento militar com barra", muscle: "shoulders", equipment: "barbell", sets: 3, reps: "6-8", rest: 150 },
           { name: "Elevação lateral com halteres", muscle: "shoulders", equipment: "dumbbell", sets: 4, reps: "12-15", rest: 60 },
-          { name: "Tríceps na corda", muscle: "triceps", equipment: "cable", sets: 3, reps: "10-12", rest: 60 },
-          { name: "Extensão de tríceps acima da cabeça", muscle: "triceps", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 60 },
-          { name: "Flexões de braços", muscle: "chest", equipment: "bodyweight", sets: 3, reps: "AMRAP", rest: 60 }
+          { name: "Extensão de tríceps com corda", muscle: "triceps", equipment: "cable", sets: 3, reps: "10-12", rest: 60 },
+          { name: "Extensão de tríceps atrás da cabeça com haltere", muscle: "triceps", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 60 },
+          { name: "Flexões", muscle: "chest", equipment: "bodyweight", sets: 3, reps: "AMRAP", rest: 60 }
         ]
       },
       {
-        name: "Puxar A",
+        name: "Pull A",
         folder: "Push Pull 4×",
-        notes: "Peso morto seguido de trabalho vertical e horizontal.",
+        notes: "Deadlift followed by vertical and horizontal pulling.",
         exercises: [
-          { name: "Peso morto", muscle: "hamstrings", equipment: "barbell", sets: 4, reps: "5-6", rest: 180 },
+          { name: "Peso morto convencional", muscle: "back", equipment: "barbell", sets: 4, reps: "5-6", rest: 180 },
           { name: "Barra fixa", muscle: "back", equipment: "bodyweight", sets: 4, reps: "6-8", rest: 120 },
           { name: "Remada curvada com barra", muscle: "back", equipment: "barbell", sets: 3, reps: "8-10", rest: 120 },
-          { name: "Puxada alta na polia", muscle: "back", equipment: "cable", sets: 3, reps: "10-12", rest: 90 },
+          { name: "Puxada frontal", muscle: "back", equipment: "cable", sets: 3, reps: "10-12", rest: 90 },
           { name: "Rosca direta com barra", muscle: "biceps", equipment: "barbell", sets: 3, reps: "8-10", rest: 60 },
           { name: "Rosca martelo", muscle: "biceps", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 60 },
           { name: "Face pull", muscle: "shoulders", equipment: "cable", sets: 3, reps: "15-20", rest: 45 }
         ]
       },
       {
-        name: "Empurrar B",
+        name: "Push B",
         folder: "Push Pull 4×",
-        notes: "Sessão de volume, com mais máquinas e menos carga livre.",
+        notes: "Volume session with more machines and less free weight.",
         exercises: [
-          { name: "Supino na máquina", muscle: "chest", equipment: "machine", sets: 4, reps: "8-12", rest: 90 },
+          { name: "Chest press na máquina", muscle: "chest", equipment: "machine", sets: 4, reps: "8-12", rest: 90 },
           { name: "Desenvolvimento com halteres", muscle: "shoulders", equipment: "dumbbell", sets: 4, reps: "8-12", rest: 120 },
-          { name: "Crucifixo na polia", muscle: "chest", equipment: "cable", sets: 3, reps: "12-15", rest: 60 },
-          { name: "Elevação lateral na polia", muscle: "shoulders", equipment: "cable", sets: 4, reps: "15-20", rest: 45 },
-          { name: "Tríceps na máquina", muscle: "triceps", equipment: "machine", sets: 3, reps: "12-15", rest: 60 },
-          { name: "Extensão de tríceps na testa", muscle: "triceps", equipment: "ezbar", sets: 3, reps: "10-12", rest: 60 },
-          { name: "Encolhimento com halteres", muscle: "traps", equipment: "dumbbell", sets: 3, reps: "12-15", rest: 60 }
+          { name: "Crossover de cabos", muscle: "chest", equipment: "cable", sets: 3, reps: "12-15", rest: 60 },
+          { name: "Elevação lateral com cabo", muscle: "shoulders", equipment: "cable", sets: 4, reps: "15-20", rest: 45 },
+          { name: "Extensão de tríceps na máquina", muscle: "triceps", equipment: "machine", sets: 3, reps: "12-15", rest: 60 },
+          { name: "Extensão de tríceps deitado com barra W", muscle: "triceps", equipment: "ezbar", sets: 3, reps: "10-12", rest: 60 },
+          { name: "Encolhimentos com halteres", muscle: "traps", equipment: "dumbbell", sets: 3, reps: "12-15", rest: 60 }
         ]
       },
       {
-        name: "Puxar B",
+        name: "Pull B",
         folder: "Push Pull 4×",
-        notes: "Foco em dorsais e braços, com descanso curto.",
+        notes: "Focus on lats and arms, with short rests.",
         exercises: [
-          { name: "Remada baixa na polia", muscle: "back", equipment: "cable", sets: 4, reps: "8-12", rest: 90 },
+          { name: "Remada baixa", muscle: "back", equipment: "cable", sets: 4, reps: "8-12", rest: 90 },
           { name: "Remada unilateral com haltere", muscle: "back", equipment: "dumbbell", sets: 4, reps: "10-12", rest: 90 },
-          { name: "Puxada alta com triângulo", muscle: "back", equipment: "cable", sets: 3, reps: "10-12", rest: 90 },
-          { name: "Pullover na polia", muscle: "back", equipment: "cable", sets: 3, reps: "12-15", rest: 60 },
-          { name: "Rosca alternada", muscle: "biceps", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 60 },
-          { name: "Rosca Scott", muscle: "biceps", equipment: "ezbar", sets: 3, reps: "10-12", rest: 60 },
-          { name: "Rosca inversa", muscle: "forearms", equipment: "barbell", sets: 3, reps: "12-15", rest: 45 }
+          { name: "Puxada frontal com pegada fechada", muscle: "back", equipment: "cable", sets: 3, reps: "10-12", rest: 90 },
+          { name: "Pullover no cabo", muscle: "back", equipment: "cable", sets: 3, reps: "12-15", rest: 60 },
+          { name: "Rosca alternada com halteres", muscle: "biceps", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 60 },
+          { name: "Rosca Scott com barra W", muscle: "biceps", equipment: "ezbar", sets: 3, reps: "10-12", rest: 60 },
+          { name: "Rosca inversa com barra", muscle: "forearms", equipment: "barbell", sets: 3, reps: "12-15", rest: 45 }
         ]
       }
     ]
@@ -302,39 +302,39 @@ window.FERRO_PROGRAMS = [
   {
     id: "stronglifts5x5",
     name: "StrongLifts 5×5",
-    subtitle: "Força bruta, 3 dias por semana",
+    subtitle: "Raw strength, 3 days a week",
     level: "beginner",
     days: 3,
     weeks: 12,
-    focus: "Força",
-    equipment: "Ginásio completo",
-    description: "Programa de força com dois treinos alternados e ênfase nos cinco movimentos básicos. Pouco volume e cargas a subir de forma linear, treino após treino.",
-    progression: "Adiciona 2,5 kg em cada treino no agachamento, supino, desenvolvimento e remada, e 5 kg no peso morto. Se falhares duas sessões seguidas no mesmo exercício, recua 10% e volta a subir.",
+    focus: "Strength",
+    equipment: "Full gym",
+    description: "A strength programme with two alternating sessions and an emphasis on the five basic lifts. Low volume and loads that climb linearly, session after session.",
+    progression: "Add 2.5 kg each session to the squat, bench press, overhead press and row, and 5 kg to the deadlift. If you fail the same exercise twice in a row, drop back 10% and start climbing again.",
     routines: [
       {
-        name: "Treino A",
+        name: "Workout A",
         folder: "StrongLifts 5×5",
-        notes: "Alterna com o treino B: A-B-A numa semana e B-A-B na seguinte.",
+        notes: "Alternate with workout B: A-B-A one week, B-A-B the next.",
         exercises: [
-          { name: "Agachamento com barra", muscle: "quads", equipment: "barbell", sets: 5, reps: "5", rest: 180, note: "Todas as séries com a mesma carga." },
-          { name: "Supino com barra", muscle: "chest", equipment: "barbell", sets: 5, reps: "5", rest: 180 },
+          { name: "Agachamento livre com barra", muscle: "quads", equipment: "barbell", sets: 5, reps: "5", rest: 180, note: "Every set at the same weight." },
+          { name: "Supino reto com barra", muscle: "chest", equipment: "barbell", sets: 5, reps: "5", rest: 180 },
           { name: "Remada curvada com barra", muscle: "back", equipment: "barbell", sets: 5, reps: "5", rest: 180 },
-          { name: "Barra fixa", muscle: "back", equipment: "bodyweight", sets: 3, reps: "AMRAP", rest: 120, note: "Acessório para reforçar as costas." },
+          { name: "Barra fixa", muscle: "back", equipment: "bodyweight", sets: 3, reps: "AMRAP", rest: 120, note: "Accessory to build the back." },
           { name: "Prancha frontal", muscle: "abs", equipment: "bodyweight", sets: 3, reps: "45-60 s", rest: 60 },
-          { name: "Elevação de gémeos em pé", muscle: "calves", equipment: "machine", sets: 3, reps: "12-15", rest: 60 }
+          { name: "Elevação de gémeos em pé na máquina", muscle: "calves", equipment: "machine", sets: 3, reps: "12-15", rest: 60 }
         ]
       },
       {
-        name: "Treino B",
+        name: "Workout B",
         folder: "StrongLifts 5×5",
-        notes: "O peso morto é feito apenas uma série de 5 repetições.",
+        notes: "The deadlift is just one set of 5 reps.",
         exercises: [
-          { name: "Agachamento com barra", muscle: "quads", equipment: "barbell", sets: 5, reps: "5", rest: 180 },
-          { name: "Desenvolvimento militar", muscle: "shoulders", equipment: "barbell", sets: 5, reps: "5", rest: 180 },
-          { name: "Peso morto", muscle: "lowerback", equipment: "barbell", sets: 1, reps: "5", rest: 240, note: "Uma só série, com técnica perfeita." },
+          { name: "Agachamento livre com barra", muscle: "quads", equipment: "barbell", sets: 5, reps: "5", rest: 180 },
+          { name: "Desenvolvimento militar com barra", muscle: "shoulders", equipment: "barbell", sets: 5, reps: "5", rest: 180 },
+          { name: "Peso morto convencional", muscle: "back", equipment: "barbell", sets: 1, reps: "5", rest: 240, note: "One set only, with perfect technique." },
           { name: "Remada unilateral com haltere", muscle: "back", equipment: "dumbbell", sets: 3, reps: "8-10", rest: 90 },
           { name: "Rosca direta com barra", muscle: "biceps", equipment: "barbell", sets: 3, reps: "8-12", rest: 60 },
-          { name: "Abdominal na máquina", muscle: "abs", equipment: "machine", sets: 3, reps: "12-15", rest: 60 }
+          { name: "Crunch na máquina", muscle: "abs", equipment: "machine", sets: 3, reps: "12-15", rest: 60 }
         ]
       }
     ]
@@ -342,66 +342,66 @@ window.FERRO_PROGRAMS = [
   {
     id: "gzclp",
     name: "GZCLP",
-    subtitle: "Progressão em camadas, 4 dias",
+    subtitle: "Tiered progression, 4 days",
     level: "intermediate",
     days: 4,
     weeks: 12,
-    focus: "Força e hipertrofia",
-    equipment: "Ginásio completo",
-    description: "Estrutura em três camadas (T1, T2 e T3) que junta levantamentos pesados a trabalho de volume. Progressão simples e repetível, fácil de ajustar.",
-    progression: "Nos T1 faz 5 séries de 3 e sobe 2,5 kg por semana; nos T2 faz 3 séries de 10 e nos T3 acrescenta repetições até ao topo do intervalo antes de aumentar o peso.",
+    focus: "Strength and hypertrophy",
+    equipment: "Full gym",
+    description: "A three-tier structure (T1, T2 and T3) that pairs heavy lifts with volume work. Simple, repeatable progression that is easy to adjust.",
+    progression: "On T1 do 5 sets of 3 and add 2.5 kg per week; on T2 do 3 sets of 10, and on T3 add reps up to the top of the range before increasing the weight.",
     routines: [
       {
-        name: "Dia 1 — T1 Agachamento",
+        name: "Day 1 — T1 Squat",
         folder: "GZCLP",
-        notes: "T1 = força, T2 = base, T3 = volume. Descansa 3 min no T1.",
+        notes: "T1 = strength, T2 = base, T3 = volume. Rest 3 min on T1.",
         exercises: [
-          { name: "Agachamento com barra", muscle: "quads", equipment: "barbell", sets: 5, reps: "3", rest: 180 },
-          { name: "Supino com barra", muscle: "chest", equipment: "barbell", sets: 3, reps: "10", rest: 120 },
-          { name: "Puxada alta na polia", muscle: "back", equipment: "cable", sets: 3, reps: "15", rest: 60 },
-          { name: "Remada baixa na polia", muscle: "back", equipment: "cable", sets: 3, reps: "15", rest: 60 },
+          { name: "Agachamento livre com barra", muscle: "quads", equipment: "barbell", sets: 5, reps: "3", rest: 180 },
+          { name: "Supino reto com barra", muscle: "chest", equipment: "barbell", sets: 3, reps: "10", rest: 120 },
+          { name: "Puxada frontal", muscle: "back", equipment: "cable", sets: 3, reps: "15", rest: 60 },
+          { name: "Remada baixa", muscle: "back", equipment: "cable", sets: 3, reps: "15", rest: 60 },
           { name: "Elevação lateral com halteres", muscle: "shoulders", equipment: "dumbbell", sets: 3, reps: "15", rest: 45 },
           { name: "Rosca direta com barra", muscle: "biceps", equipment: "barbell", sets: 3, reps: "12-15", rest: 60 }
         ]
       },
       {
-        name: "Dia 2 — T1 Desenvolvimento",
+        name: "Day 2 — T1 Overhead press",
         folder: "GZCLP",
-        notes: "Peso morto no T2 com carga moderada e mais repetições.",
+        notes: "Deadlift in T2 with a moderate load and higher reps.",
         exercises: [
-          { name: "Desenvolvimento militar", muscle: "shoulders", equipment: "barbell", sets: 5, reps: "3", rest: 180 },
-          { name: "Peso morto", muscle: "hamstrings", equipment: "barbell", sets: 3, reps: "10", rest: 150 },
+          { name: "Desenvolvimento militar com barra", muscle: "shoulders", equipment: "barbell", sets: 5, reps: "3", rest: 180 },
+          { name: "Peso morto convencional", muscle: "back", equipment: "barbell", sets: 3, reps: "10", rest: 150 },
           { name: "Barra fixa", muscle: "back", equipment: "bodyweight", sets: 3, reps: "AMRAP", rest: 90 },
           { name: "Remada curvada com barra", muscle: "back", equipment: "barbell", sets: 3, reps: "12-15", rest: 90 },
-          { name: "Extensão de tríceps na corda", muscle: "triceps", equipment: "cable", sets: 3, reps: "15", rest: 60 },
+          { name: "Extensão de tríceps com corda", muscle: "triceps", equipment: "cable", sets: 3, reps: "15", rest: 60 },
           { name: "Face pull", muscle: "shoulders", equipment: "cable", sets: 3, reps: "15-20", rest: 45 }
         ]
       },
       {
-        name: "Dia 3 — T1 Supino",
+        name: "Day 3 — T1 Bench press",
         folder: "GZCLP",
-        notes: "Segundo dia de agachamento, agora como T2.",
+        notes: "Second squat day, now as T2.",
         exercises: [
-          { name: "Supino com barra", muscle: "chest", equipment: "barbell", sets: 5, reps: "3", rest: 180 },
-          { name: "Agachamento com barra", muscle: "quads", equipment: "barbell", sets: 3, reps: "10", rest: 150 },
+          { name: "Supino reto com barra", muscle: "chest", equipment: "barbell", sets: 5, reps: "3", rest: 180 },
+          { name: "Agachamento livre com barra", muscle: "quads", equipment: "barbell", sets: 3, reps: "10", rest: 150 },
           { name: "Remada unilateral com haltere", muscle: "back", equipment: "dumbbell", sets: 3, reps: "12-15", rest: 60 },
-          { name: "Puxada alta na polia", muscle: "back", equipment: "cable", sets: 3, reps: "12-15", rest: 60 },
-          { name: "Elevação lateral na polia", muscle: "shoulders", equipment: "cable", sets: 3, reps: "15", rest: 45 },
+          { name: "Puxada frontal", muscle: "back", equipment: "cable", sets: 3, reps: "12-15", rest: 60 },
+          { name: "Elevação lateral com cabo", muscle: "shoulders", equipment: "cable", sets: 3, reps: "15", rest: 45 },
           { name: "Rosca martelo", muscle: "biceps", equipment: "dumbbell", sets: 3, reps: "12-15", rest: 60 },
-          { name: "Gémeos em pé na máquina", muscle: "calves", equipment: "machine", sets: 3, reps: "15-20", rest: 45 }
+          { name: "Elevação de gémeos em pé na máquina", muscle: "calves", equipment: "machine", sets: 3, reps: "15-20", rest: 45 }
         ]
       },
       {
-        name: "Dia 4 — T1 Peso morto",
+        name: "Day 4 — T1 Deadlift",
         folder: "GZCLP",
-        notes: "Último treino da semana; guarda energia para o T1.",
+        notes: "Last session of the week; save your energy for T1.",
         exercises: [
-          { name: "Peso morto", muscle: "lowerback", equipment: "barbell", sets: 5, reps: "3", rest: 240 },
-          { name: "Desenvolvimento militar", muscle: "shoulders", equipment: "barbell", sets: 3, reps: "10", rest: 120 },
-          { name: "Remada baixa na polia", muscle: "back", equipment: "cable", sets: 3, reps: "15", rest: 60 },
-          { name: "Puxada alta com triângulo", muscle: "back", equipment: "cable", sets: 3, reps: "15", rest: 60 },
-          { name: "Tríceps na máquina", muscle: "triceps", equipment: "machine", sets: 3, reps: "15", rest: 45 },
-          { name: "Abdominal na máquina", muscle: "abs", equipment: "machine", sets: 3, reps: "15", rest: 45 }
+          { name: "Peso morto convencional", muscle: "back", equipment: "barbell", sets: 5, reps: "3", rest: 240 },
+          { name: "Desenvolvimento militar com barra", muscle: "shoulders", equipment: "barbell", sets: 3, reps: "10", rest: 120 },
+          { name: "Remada baixa", muscle: "back", equipment: "cable", sets: 3, reps: "15", rest: 60 },
+          { name: "Puxada frontal com pegada fechada", muscle: "back", equipment: "cable", sets: 3, reps: "15", rest: 60 },
+          { name: "Extensão de tríceps na máquina", muscle: "triceps", equipment: "machine", sets: 3, reps: "15", rest: 45 },
+          { name: "Crunch na máquina", muscle: "abs", equipment: "machine", sets: 3, reps: "15", rest: 45 }
         ]
       }
     ]
@@ -413,66 +413,66 @@ window.FERRO_PROGRAMS = [
     level: "intermediate",
     days: 4,
     weeks: 12,
-    focus: "Força e hipertrofia",
-    equipment: "Ginásio completo",
-    description: "Dois dias de força e dois de hipertrofia, alternando metade superior e inferior. Junta cargas altas com volume moderado na mesma semana.",
-    progression: "Nos dias de força sobe 2,5 kg quando fizeres o topo do intervalo; nos dias de hipertrofia, acrescenta uma repetição por série e só depois aumentas o peso.",
+    focus: "Strength and hypertrophy",
+    equipment: "Full gym",
+    description: "Two strength days and two hypertrophy days, alternating upper and lower body. Combines heavy loads with moderate volume in the same week.",
+    progression: "On strength days add 2.5 kg once you hit the top of the rep range; on hypertrophy days, add one rep per set and only then increase the weight.",
     routines: [
       {
-        name: "Superior — Força",
+        name: "Upper — Strength",
         folder: "PHUL",
-        notes: "Séries de 3-5 repetições com descanso longo.",
+        notes: "Sets of 3-5 reps with long rests.",
         exercises: [
-          { name: "Supino com barra", muscle: "chest", equipment: "barbell", sets: 4, reps: "3-5", rest: 180 },
+          { name: "Supino reto com barra", muscle: "chest", equipment: "barbell", sets: 4, reps: "3-5", rest: 180 },
           { name: "Remada curvada com barra", muscle: "back", equipment: "barbell", sets: 4, reps: "3-5", rest: 180 },
-          { name: "Desenvolvimento militar", muscle: "shoulders", equipment: "barbell", sets: 3, reps: "6-8", rest: 150 },
-          { name: "Puxada alta na polia", muscle: "back", equipment: "cable", sets: 3, reps: "6-8", rest: 120 },
+          { name: "Desenvolvimento militar com barra", muscle: "shoulders", equipment: "barbell", sets: 3, reps: "6-8", rest: 150 },
+          { name: "Puxada frontal", muscle: "back", equipment: "cable", sets: 3, reps: "6-8", rest: 120 },
           { name: "Rosca direta com barra", muscle: "biceps", equipment: "barbell", sets: 3, reps: "6-8", rest: 90 },
-          { name: "Extensão de tríceps na testa", muscle: "triceps", equipment: "ezbar", sets: 3, reps: "6-8", rest: 90 },
-          { name: "Encolhimento com barra", muscle: "traps", equipment: "barbell", sets: 3, reps: "8-10", rest: 90 }
+          { name: "Extensão de tríceps deitado com barra W", muscle: "triceps", equipment: "ezbar", sets: 3, reps: "6-8", rest: 90 },
+          { name: "Encolhimentos com barra", muscle: "traps", equipment: "barbell", sets: 3, reps: "8-10", rest: 90 }
         ]
       },
       {
-        name: "Inferior — Força",
+        name: "Lower — Strength",
         folder: "PHUL",
-        notes: "Agachamento e peso morto no mesmo dia: controla o volume total.",
+        notes: "Squat and deadlift on the same day: keep total volume in check.",
         exercises: [
-          { name: "Agachamento com barra", muscle: "quads", equipment: "barbell", sets: 4, reps: "3-5", rest: 240 },
-          { name: "Peso morto", muscle: "hamstrings", equipment: "barbell", sets: 4, reps: "3-5", rest: 240 },
+          { name: "Agachamento livre com barra", muscle: "quads", equipment: "barbell", sets: 4, reps: "3-5", rest: 240 },
+          { name: "Peso morto convencional", muscle: "back", equipment: "barbell", sets: 4, reps: "3-5", rest: 240 },
           { name: "Leg press", muscle: "quads", equipment: "machine", sets: 3, reps: "8-10", rest: 120 },
           { name: "Cadeira flexora", muscle: "hamstrings", equipment: "machine", sets: 3, reps: "8-10", rest: 90 },
-          { name: "Elevação de gémeos em pé", muscle: "calves", equipment: "machine", sets: 4, reps: "8-10", rest: 60 },
-          { name: "Abdominal na máquina", muscle: "abs", equipment: "machine", sets: 3, reps: "12-15", rest: 60 }
+          { name: "Elevação de gémeos em pé na máquina", muscle: "calves", equipment: "machine", sets: 4, reps: "8-10", rest: 60 },
+          { name: "Crunch na máquina", muscle: "abs", equipment: "machine", sets: 3, reps: "12-15", rest: 60 }
         ]
       },
       {
-        name: "Superior — Hipertrofia",
+        name: "Upper — Hypertrophy",
         folder: "PHUL",
-        notes: "Repetições mais altas e descanso de 60-90 s.",
+        notes: "Higher reps and 60-90 s rest.",
         exercises: [
           { name: "Supino inclinado com halteres", muscle: "chest", equipment: "dumbbell", sets: 4, reps: "8-12", rest: 120 },
-          { name: "Remada baixa na polia", muscle: "back", equipment: "cable", sets: 4, reps: "8-12", rest: 90 },
-          { name: "Crucifixo na máquina", muscle: "chest", equipment: "machine", sets: 3, reps: "10-15", rest: 60 },
+          { name: "Remada baixa", muscle: "back", equipment: "cable", sets: 4, reps: "8-12", rest: 90 },
+          { name: "Pec deck", muscle: "chest", equipment: "machine", sets: 3, reps: "10-15", rest: 60 },
           { name: "Remada unilateral com haltere", muscle: "back", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 90 },
           { name: "Elevação lateral com halteres", muscle: "shoulders", equipment: "dumbbell", sets: 4, reps: "12-15", rest: 60 },
-          { name: "Rosca alternada", muscle: "biceps", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 60 },
-          { name: "Tríceps na corda", muscle: "triceps", equipment: "cable", sets: 3, reps: "10-15", rest: 60 },
+          { name: "Rosca alternada com halteres", muscle: "biceps", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 60 },
+          { name: "Extensão de tríceps com corda", muscle: "triceps", equipment: "cable", sets: 3, reps: "10-15", rest: 60 },
           { name: "Supino no smith", muscle: "chest", equipment: "smith", sets: 3, reps: "10-12", rest: 90 },
           { name: "Face pull", muscle: "shoulders", equipment: "cable", sets: 3, reps: "15-20", rest: 45 }
         ]
       },
       {
-        name: "Inferior — Hipertrofia",
+        name: "Lower — Hypertrophy",
         folder: "PHUL",
-        notes: "Mais repetições e trabalho unilateral para corrigir assimetrias.",
+        notes: "More reps and unilateral work to iron out imbalances.",
         exercises: [
-          { name: "Agachamento frontal", muscle: "quads", equipment: "barbell", sets: 4, reps: "8-10", rest: 150 },
-          { name: "Peso morto romeno", muscle: "hamstrings", equipment: "barbell", sets: 4, reps: "8-10", rest: 120 },
+          { name: "Agachamento frontal com barra", muscle: "quads", equipment: "barbell", sets: 4, reps: "8-10", rest: 150 },
+          { name: "Peso morto romeno com barra", muscle: "hamstrings", equipment: "barbell", sets: 4, reps: "8-10", rest: 120 },
           { name: "Cadeira extensora", muscle: "quads", equipment: "machine", sets: 4, reps: "10-15", rest: 60 },
-          { name: "Cadeira flexora sentado", muscle: "hamstrings", equipment: "machine", sets: 4, reps: "10-15", rest: 60 },
-          { name: "Afundo búlgaro", muscle: "quads", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 90, note: "Repetições por perna." },
-          { name: "Elevação de gémeos sentado", muscle: "calves", equipment: "machine", sets: 4, reps: "12-20", rest: 45 },
-          { name: "Hiperextensão lombar", muscle: "lowerback", equipment: "machine", sets: 3, reps: "12-15", rest: 60 }
+          { name: "Cadeira flexora", muscle: "hamstrings", equipment: "machine", sets: 4, reps: "10-15", rest: 60 },
+          { name: "Agachamento búlgaro com halteres", muscle: "quads", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 90, note: "Reps per leg." },
+          { name: "Elevação de gémeos sentado na máquina", muscle: "calves", equipment: "machine", sets: 4, reps: "12-20", rest: 45 },
+          { name: "Extensão lombar na máquina", muscle: "lowerback", equipment: "machine", sets: 3, reps: "12-15", rest: 60 }
         ]
       }
     ]
@@ -480,84 +480,84 @@ window.FERRO_PROGRAMS = [
   {
     id: "brosplit5",
     name: "Bro Split 5×",
-    subtitle: "Um grupo muscular por dia",
+    subtitle: "One muscle group per day",
     level: "intermediate",
     days: 5,
     weeks: 10,
-    focus: "Hipertrofia",
-    equipment: "Ginásio completo",
-    description: "Divisão clássica com um grupo muscular por sessão, muito volume por músculo e recuperação longa. Para quem gosta de esgotar cada grupo até à falha.",
-    progression: "Trabalha entre 1 e 2 repetições da falha e sobe 2,5 kg quando fizeres o topo do intervalo em todas as séries; nos isolamentos, aumenta repetições antes do peso.",
+    focus: "Hypertrophy",
+    equipment: "Full gym",
+    description: "Classic split with one muscle group per session, plenty of volume per muscle and long recovery. For those who like to take every group to failure.",
+    progression: "Work 1 to 2 reps shy of failure and add 2.5 kg once you hit the top of the rep range on every set; on isolations, add reps before weight.",
     routines: [
       {
-        name: "Peito",
+        name: "Chest",
         folder: "Bro Split 5×",
-        notes: "Alterna ângulos: plano, inclinado e declinado.",
+        notes: "Mix up the angles: flat, incline and decline.",
         exercises: [
-          { name: "Supino com barra", muscle: "chest", equipment: "barbell", sets: 4, reps: "6-8", rest: 150 },
+          { name: "Supino reto com barra", muscle: "chest", equipment: "barbell", sets: 4, reps: "6-8", rest: 150 },
           { name: "Supino inclinado com halteres", muscle: "chest", equipment: "dumbbell", sets: 4, reps: "8-10", rest: 120 },
-          { name: "Crucifixo na máquina", muscle: "chest", equipment: "machine", sets: 3, reps: "10-12", rest: 60 },
-          { name: "Supino declinado na máquina", muscle: "chest", equipment: "machine", sets: 3, reps: "10-12", rest: 90 },
-          { name: "Crucifixo na polia", muscle: "chest", equipment: "cable", sets: 3, reps: "12-15", rest: 60 },
-          { name: "Flexões de braços", muscle: "chest", equipment: "bodyweight", sets: 3, reps: "AMRAP", rest: 60 }
+          { name: "Pec deck", muscle: "chest", equipment: "machine", sets: 3, reps: "10-12", rest: 60 },
+          { name: "Chest press na máquina", muscle: "chest", equipment: "machine", sets: 3, reps: "10-12", rest: 90 },
+          { name: "Crossover de cabos", muscle: "chest", equipment: "cable", sets: 3, reps: "12-15", rest: 60 },
+          { name: "Flexões", muscle: "chest", equipment: "bodyweight", sets: 3, reps: "AMRAP", rest: 60 }
         ]
       },
       {
-        name: "Costas",
+        name: "Back",
         folder: "Bro Split 5×",
-        notes: "Começa pela barra fixa, enquanto estás fresco.",
+        notes: "Start with pull-ups while you're fresh.",
         exercises: [
           { name: "Barra fixa", muscle: "back", equipment: "bodyweight", sets: 4, reps: "6-10", rest: 120 },
           { name: "Remada curvada com barra", muscle: "back", equipment: "barbell", sets: 4, reps: "6-8", rest: 150 },
-          { name: "Puxada alta na polia", muscle: "back", equipment: "cable", sets: 4, reps: "8-12", rest: 90 },
-          { name: "Remada baixa na polia", muscle: "back", equipment: "cable", sets: 3, reps: "10-12", rest: 90 },
-          { name: "Pullover na polia", muscle: "back", equipment: "cable", sets: 3, reps: "12-15", rest: 60 },
-          { name: "Encolhimento com barra", muscle: "traps", equipment: "barbell", sets: 4, reps: "12-15", rest: 60 },
-          { name: "Hiperextensão lombar", muscle: "lowerback", equipment: "machine", sets: 3, reps: "12-15", rest: 60 }
+          { name: "Puxada frontal", muscle: "back", equipment: "cable", sets: 4, reps: "8-12", rest: 90 },
+          { name: "Remada baixa", muscle: "back", equipment: "cable", sets: 3, reps: "10-12", rest: 90 },
+          { name: "Pullover no cabo", muscle: "back", equipment: "cable", sets: 3, reps: "12-15", rest: 60 },
+          { name: "Encolhimentos com barra", muscle: "traps", equipment: "barbell", sets: 4, reps: "12-15", rest: 60 },
+          { name: "Extensão lombar na máquina", muscle: "lowerback", equipment: "machine", sets: 3, reps: "12-15", rest: 60 }
         ]
       },
       {
-        name: "Ombros",
+        name: "Shoulders",
         folder: "Bro Split 5×",
-        notes: "Não encolhas os ombros nas elevações laterais.",
+        notes: "Don't shrug on lateral raises.",
         exercises: [
-          { name: "Desenvolvimento militar", muscle: "shoulders", equipment: "barbell", sets: 4, reps: "6-8", rest: 150 },
+          { name: "Desenvolvimento militar com barra", muscle: "shoulders", equipment: "barbell", sets: 4, reps: "6-8", rest: 150 },
           { name: "Desenvolvimento com halteres", muscle: "shoulders", equipment: "dumbbell", sets: 3, reps: "8-10", rest: 120 },
           { name: "Elevação lateral com halteres", muscle: "shoulders", equipment: "dumbbell", sets: 4, reps: "12-15", rest: 60 },
-          { name: "Elevação frontal com disco", muscle: "shoulders", equipment: "plate", sets: 3, reps: "12-15", rest: 60 },
-          { name: "Elevação lateral na polia", muscle: "shoulders", equipment: "cable", sets: 3, reps: "15-20", rest: 45 },
+          { name: "Elevação frontal com anilha", muscle: "shoulders", equipment: "plate", sets: 3, reps: "12-15", rest: 60 },
+          { name: "Elevação lateral com cabo", muscle: "shoulders", equipment: "cable", sets: 3, reps: "15-20", rest: 45 },
           { name: "Face pull", muscle: "shoulders", equipment: "cable", sets: 3, reps: "15-20", rest: 45 },
-          { name: "Encolhimento com halteres", muscle: "traps", equipment: "dumbbell", sets: 3, reps: "12-15", rest: 60 }
+          { name: "Encolhimentos com halteres", muscle: "traps", equipment: "dumbbell", sets: 3, reps: "12-15", rest: 60 }
         ]
       },
       {
-        name: "Braços",
+        name: "Arms",
         folder: "Bro Split 5×",
-        notes: "Alterna bíceps e tríceps para manter a intensidade.",
+        notes: "Alternate biceps and triceps to keep the intensity up.",
         exercises: [
           { name: "Rosca direta com barra", muscle: "biceps", equipment: "barbell", sets: 4, reps: "8-10", rest: 60 },
           { name: "Supino fechado", muscle: "triceps", equipment: "barbell", sets: 4, reps: "8-10", rest: 90 },
-          { name: "Rosca alternada", muscle: "biceps", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 60 },
-          { name: "Extensão de tríceps na corda", muscle: "triceps", equipment: "cable", sets: 3, reps: "10-12", rest: 60 },
-          { name: "Rosca Scott", muscle: "biceps", equipment: "ezbar", sets: 3, reps: "10-12", rest: 60 },
-          { name: "Mergulhos nas paralelas", muscle: "triceps", equipment: "bodyweight", sets: 3, reps: "8-12", rest: 90 },
+          { name: "Rosca alternada com halteres", muscle: "biceps", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 60 },
+          { name: "Extensão de tríceps com corda", muscle: "triceps", equipment: "cable", sets: 3, reps: "10-12", rest: 60 },
+          { name: "Rosca Scott com barra W", muscle: "biceps", equipment: "ezbar", sets: 3, reps: "10-12", rest: 60 },
+          { name: "Tríceps dips nas paralelas", muscle: "triceps", equipment: "bodyweight", sets: 3, reps: "8-12", rest: 90 },
           { name: "Rosca martelo", muscle: "biceps", equipment: "dumbbell", sets: 3, reps: "12-15", rest: 60 },
-          { name: "Rosca inversa", muscle: "forearms", equipment: "barbell", sets: 3, reps: "12-15", rest: 45 }
+          { name: "Rosca inversa com barra", muscle: "forearms", equipment: "barbell", sets: 3, reps: "12-15", rest: 45 }
         ]
       },
       {
-        name: "Pernas",
+        name: "Legs",
         folder: "Bro Split 5×",
-        notes: "Sessão longa: guarda 3 min de descanso para o agachamento.",
+        notes: "Long session: save 3 min of rest for the squat.",
         exercises: [
-          { name: "Agachamento com barra", muscle: "quads", equipment: "barbell", sets: 4, reps: "6-8", rest: 180 },
-          { name: "Peso morto romeno", muscle: "hamstrings", equipment: "barbell", sets: 4, reps: "8-10", rest: 120 },
+          { name: "Agachamento livre com barra", muscle: "quads", equipment: "barbell", sets: 4, reps: "6-8", rest: 180 },
+          { name: "Peso morto romeno com barra", muscle: "hamstrings", equipment: "barbell", sets: 4, reps: "8-10", rest: 120 },
           { name: "Leg press", muscle: "quads", equipment: "machine", sets: 3, reps: "10-12", rest: 120 },
           { name: "Cadeira extensora", muscle: "quads", equipment: "machine", sets: 3, reps: "12-15", rest: 60 },
           { name: "Cadeira flexora", muscle: "hamstrings", equipment: "machine", sets: 3, reps: "12-15", rest: 60 },
-          { name: "Afundo com halteres", muscle: "quads", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 90 },
-          { name: "Elevação de gémeos em pé", muscle: "calves", equipment: "machine", sets: 4, reps: "12-15", rest: 60 },
-          { name: "Elevação de gémeos sentado", muscle: "calves", equipment: "machine", sets: 3, reps: "15-20", rest: 45 }
+          { name: "Afundos com halteres", muscle: "quads", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 90 },
+          { name: "Elevação de gémeos em pé na máquina", muscle: "calves", equipment: "machine", sets: 4, reps: "12-15", rest: 60 },
+          { name: "Elevação de gémeos sentado na máquina", muscle: "calves", equipment: "machine", sets: 3, reps: "15-20", rest: 45 }
         ]
       }
     ]
@@ -565,160 +565,160 @@ window.FERRO_PROGRAMS = [
   {
     id: "arnold6",
     name: "Arnold Split 6×",
-    subtitle: "Peito e costas, ombros e braços, pernas",
+    subtitle: "Chest and back, shoulders and arms, legs",
     level: "advanced",
     days: 6,
     weeks: 12,
-    focus: "Hipertrofia",
-    equipment: "Ginásio completo",
-    description: "Divisão de seis dias ao estilo Arnold, com peito e costas no mesmo treino e um bloco dedicado a ombros e braços. Volume muito alto, só para quem recupera bem.",
-    progression: "Sobe 2,5 kg nos compostos quando cumprires o topo do intervalo e mantém os isolamentos entre 1 e 2 repetições da falha. A cada três semanas, faz uma semana com metade do volume.",
+    focus: "Hypertrophy",
+    equipment: "Full gym",
+    description: "Arnold-style six-day split, with chest and back in the same session and a dedicated shoulders-and-arms block. Very high volume, only for those who recover well.",
+    progression: "Add 2.5 kg to the compounds once you hit the top of the rep range and keep isolations 1 to 2 reps shy of failure. Every three weeks, take a week at half the volume.",
     routines: [
       {
-        name: "Peito e Costas A",
+        name: "Chest and Back A",
         folder: "Arnold Split 6×",
-        notes: "Supersérie opcional entre peito e costas.",
+        notes: "Optional supersets between chest and back.",
         exercises: [
-          { name: "Supino com barra", muscle: "chest", equipment: "barbell", sets: 4, reps: "6-8", rest: 150 },
+          { name: "Supino reto com barra", muscle: "chest", equipment: "barbell", sets: 4, reps: "6-8", rest: 150 },
           { name: "Barra fixa", muscle: "back", equipment: "bodyweight", sets: 4, reps: "8-10", rest: 120 },
           { name: "Supino inclinado com halteres", muscle: "chest", equipment: "dumbbell", sets: 4, reps: "8-10", rest: 120 },
           { name: "Remada curvada com barra", muscle: "back", equipment: "barbell", sets: 4, reps: "8-10", rest: 120 },
           { name: "Crucifixo com halteres", muscle: "chest", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 60 },
-          { name: "Puxada alta na polia", muscle: "back", equipment: "cable", sets: 3, reps: "10-12", rest: 90 },
+          { name: "Puxada frontal", muscle: "back", equipment: "cable", sets: 3, reps: "10-12", rest: 90 },
           { name: "Pullover com haltere", muscle: "back", equipment: "dumbbell", sets: 3, reps: "12-15", rest: 60 }
         ]
       },
       {
-        name: "Ombros e Braços A",
+        name: "Shoulders and Arms A",
         folder: "Arnold Split 6×",
-        notes: "Dia pesado para ombros e braços.",
+        notes: "Heavy day for shoulders and arms.",
         exercises: [
-          { name: "Desenvolvimento militar", muscle: "shoulders", equipment: "barbell", sets: 4, reps: "6-8", rest: 150 },
+          { name: "Desenvolvimento militar com barra", muscle: "shoulders", equipment: "barbell", sets: 4, reps: "6-8", rest: 150 },
           { name: "Elevação lateral com halteres", muscle: "shoulders", equipment: "dumbbell", sets: 4, reps: "12-15", rest: 60 },
           { name: "Rosca direta com barra", muscle: "biceps", equipment: "barbell", sets: 4, reps: "8-10", rest: 60 },
           { name: "Supino fechado", muscle: "triceps", equipment: "barbell", sets: 4, reps: "8-10", rest: 90 },
           { name: "Elevação lateral inclinado", muscle: "shoulders", equipment: "dumbbell", sets: 3, reps: "12-15", rest: 45 },
-          { name: "Rosca alternada", muscle: "biceps", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 60 },
-          { name: "Extensão de tríceps na corda", muscle: "triceps", equipment: "cable", sets: 3, reps: "10-12", rest: 60 },
-          { name: "Rosca punho", muscle: "forearms", equipment: "dumbbell", sets: 3, reps: "15-20", rest: 45 }
+          { name: "Rosca alternada com halteres", muscle: "biceps", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 60 },
+          { name: "Extensão de tríceps com corda", muscle: "triceps", equipment: "cable", sets: 3, reps: "10-12", rest: 60 },
+          { name: "Rosca de punho com halteres", muscle: "forearms", equipment: "dumbbell", sets: 3, reps: "15-20", rest: 45 }
         ]
       },
       {
-        name: "Pernas A",
+        name: "Legs A",
         folder: "Arnold Split 6×",
-        notes: "Agachamento pesado seguido de trabalho de posterior.",
+        notes: "Heavy squat followed by posterior-chain work.",
         exercises: [
-          { name: "Agachamento com barra", muscle: "quads", equipment: "barbell", sets: 5, reps: "6-8", rest: 180 },
-          { name: "Peso morto romeno", muscle: "hamstrings", equipment: "barbell", sets: 4, reps: "8-10", rest: 150 },
+          { name: "Agachamento livre com barra", muscle: "quads", equipment: "barbell", sets: 5, reps: "6-8", rest: 180 },
+          { name: "Peso morto romeno com barra", muscle: "hamstrings", equipment: "barbell", sets: 4, reps: "8-10", rest: 150 },
           { name: "Leg press", muscle: "quads", equipment: "machine", sets: 4, reps: "10-12", rest: 120 },
           { name: "Cadeira extensora", muscle: "quads", equipment: "machine", sets: 3, reps: "12-15", rest: 60 },
           { name: "Cadeira flexora", muscle: "hamstrings", equipment: "machine", sets: 3, reps: "12-15", rest: 60 },
-          { name: "Elevação de gémeos em pé", muscle: "calves", equipment: "machine", sets: 4, reps: "12-15", rest: 60 },
-          { name: "Elevação de gémeos sentado", muscle: "calves", equipment: "machine", sets: 3, reps: "15-20", rest: 45 }
+          { name: "Elevação de gémeos em pé na máquina", muscle: "calves", equipment: "machine", sets: 4, reps: "12-15", rest: 60 },
+          { name: "Elevação de gémeos sentado na máquina", muscle: "calves", equipment: "machine", sets: 3, reps: "15-20", rest: 45 }
         ]
       },
       {
-        name: "Peito e Costas B",
+        name: "Chest and Back B",
         folder: "Arnold Split 6×",
-        notes: "Ângulos diferentes do treino A, com mais máquinas.",
+        notes: "Different angles from workout A, with more machines.",
         exercises: [
           { name: "Supino inclinado com barra", muscle: "chest", equipment: "barbell", sets: 4, reps: "6-8", rest: 150 },
-          { name: "Remada baixa na polia", muscle: "back", equipment: "cable", sets: 4, reps: "8-10", rest: 90 },
-          { name: "Crucifixo na máquina", muscle: "chest", equipment: "machine", sets: 4, reps: "10-12", rest: 60 },
+          { name: "Remada baixa", muscle: "back", equipment: "cable", sets: 4, reps: "8-10", rest: 90 },
+          { name: "Pec deck", muscle: "chest", equipment: "machine", sets: 4, reps: "10-12", rest: 60 },
           { name: "Remada unilateral com haltere", muscle: "back", equipment: "dumbbell", sets: 4, reps: "10-12", rest: 90 },
           { name: "Supino declinado com halteres", muscle: "chest", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 90 },
-          { name: "Puxada alta com triângulo", muscle: "back", equipment: "cable", sets: 3, reps: "10-12", rest: 90 },
-          { name: "Flexões de braços", muscle: "chest", equipment: "bodyweight", sets: 3, reps: "AMRAP", rest: 60 }
+          { name: "Puxada frontal com pegada fechada", muscle: "back", equipment: "cable", sets: 3, reps: "10-12", rest: 90 },
+          { name: "Flexões", muscle: "chest", equipment: "bodyweight", sets: 3, reps: "AMRAP", rest: 60 }
         ]
       },
       {
-        name: "Ombros e Braços B",
+        name: "Shoulders and Arms B",
         folder: "Arnold Split 6×",
-        notes: "Mais volume e menos carga do que no treino A.",
+        notes: "More volume and less load than in workout A.",
         exercises: [
           { name: "Desenvolvimento com halteres", muscle: "shoulders", equipment: "dumbbell", sets: 4, reps: "8-10", rest: 120 },
-          { name: "Elevação frontal com disco", muscle: "shoulders", equipment: "plate", sets: 4, reps: "12-15", rest: 60 },
-          { name: "Rosca Scott", muscle: "biceps", equipment: "ezbar", sets: 4, reps: "10-12", rest: 60 },
-          { name: "Extensão de tríceps acima da cabeça", muscle: "triceps", equipment: "ezbar", sets: 4, reps: "10-12", rest: 60 },
+          { name: "Elevação frontal com anilha", muscle: "shoulders", equipment: "plate", sets: 4, reps: "12-15", rest: 60 },
+          { name: "Rosca Scott com barra W", muscle: "biceps", equipment: "ezbar", sets: 4, reps: "10-12", rest: 60 },
+          { name: "Extensão de tríceps atrás da cabeça com haltere", muscle: "triceps", equipment: "dumbbell", sets: 4, reps: "10-12", rest: 60 },
           { name: "Face pull", muscle: "shoulders", equipment: "cable", sets: 4, reps: "15-20", rest: 45 },
           { name: "Rosca martelo", muscle: "biceps", equipment: "dumbbell", sets: 3, reps: "12-15", rest: 60 },
-          { name: "Mergulhos nas paralelas", muscle: "triceps", equipment: "bodyweight", sets: 3, reps: "8-12", rest: 90 },
-          { name: "Encolhimento com halteres", muscle: "traps", equipment: "dumbbell", sets: 3, reps: "15-20", rest: 45 }
+          { name: "Tríceps dips nas paralelas", muscle: "triceps", equipment: "bodyweight", sets: 3, reps: "8-12", rest: 90 },
+          { name: "Encolhimentos com halteres", muscle: "traps", equipment: "dumbbell", sets: 3, reps: "15-20", rest: 45 }
         ]
       },
       {
-        name: "Pernas B",
+        name: "Legs B",
         folder: "Arnold Split 6×",
-        notes: "Sessão com mais ênfase no quadríceps e nos gémeos.",
+        notes: "Session with more emphasis on quads and calves.",
         exercises: [
-          { name: "Agachamento frontal", muscle: "quads", equipment: "barbell", sets: 4, reps: "8-10", rest: 150 },
-          { name: "Peso morto", muscle: "lowerback", equipment: "barbell", sets: 4, reps: "5-6", rest: 180 },
-          { name: "Afundo búlgaro", muscle: "quads", equipment: "dumbbell", sets: 4, reps: "10-12", rest: 90, note: "Repetições por perna." },
+          { name: "Agachamento frontal com barra", muscle: "quads", equipment: "barbell", sets: 4, reps: "8-10", rest: 150 },
+          { name: "Peso morto convencional", muscle: "back", equipment: "barbell", sets: 4, reps: "5-6", rest: 180 },
+          { name: "Agachamento búlgaro com halteres", muscle: "quads", equipment: "dumbbell", sets: 4, reps: "10-12", rest: 90, note: "Reps per leg." },
           { name: "Cadeira extensora", muscle: "quads", equipment: "machine", sets: 3, reps: "15-20", rest: 45 },
-          { name: "Cadeira flexora sentado", muscle: "hamstrings", equipment: "machine", sets: 3, reps: "15-20", rest: 45 },
-          { name: "Elevação de gémeos sentado", muscle: "calves", equipment: "machine", sets: 4, reps: "15-20", rest: 45 },
-          { name: "Hiperextensão lombar", muscle: "lowerback", equipment: "machine", sets: 3, reps: "12-15", rest: 60 }
+          { name: "Cadeira flexora", muscle: "hamstrings", equipment: "machine", sets: 3, reps: "15-20", rest: 45 },
+          { name: "Elevação de gémeos sentado na máquina", muscle: "calves", equipment: "machine", sets: 4, reps: "15-20", rest: 45 },
+          { name: "Extensão lombar na máquina", muscle: "lowerback", equipment: "machine", sets: 3, reps: "12-15", rest: 60 }
         ]
       }
     ]
   },
   {
     id: "casahalteres3",
-    name: "Casa com halteres",
-    subtitle: "Equipamento mínimo, 3 dias por semana",
+    name: "Home Dumbbells",
+    subtitle: "Minimal equipment, 3 days a week",
     level: "beginner",
     days: 3,
     weeks: 8,
-    focus: "Hipertrofia geral",
-    equipment: "Halteres, banco, barra fixa e kettlebell",
-    description: "Programa de corpo inteiro pensado para treinar em casa com halteres, um banco e uma barra fixa. Movimentos simples e progressão fácil de seguir.",
-    progression: "Quando fizeres o topo do intervalo em todas as séries, aumenta 2 kg em cada haltere ou passa para uma variação mais difícil. Sem peso extra, acrescenta uma série.",
+    focus: "General hypertrophy",
+    equipment: "Dumbbells, bench, pull-up bar and kettlebell",
+    description: "A full-body programme designed for training at home with dumbbells, a bench and a pull-up bar. Simple movements and easy-to-follow progression.",
+    progression: "When you hit the top of the rep range on every set, add 2 kg to each dumbbell or move to a harder variation. With no extra weight, add a set.",
     routines: [
       {
-        name: "Casa A",
-        folder: "Casa com halteres",
-        notes: "Treino completo com halteres e peso do corpo.",
+        name: "Home A",
+        folder: "Home Dumbbells",
+        notes: "Full session with dumbbells and bodyweight.",
         exercises: [
-          { name: "Agachamento goblet", muscle: "quads", equipment: "dumbbell", sets: 4, reps: "10-12", rest: 90, note: "Haltere junto ao peito, tronco direito." },
-          { name: "Flexões de braços", muscle: "chest", equipment: "bodyweight", sets: 4, reps: "8-12", rest: 90 },
+          { name: "Agachamento goblet", muscle: "quads", equipment: "dumbbell", sets: 4, reps: "10-12", rest: 90, note: "Dumbbell at your chest, torso upright." },
+          { name: "Flexões", muscle: "chest", equipment: "bodyweight", sets: 4, reps: "8-12", rest: 90 },
           { name: "Remada unilateral com haltere", muscle: "back", equipment: "dumbbell", sets: 4, reps: "10-12", rest: 90 },
           { name: "Desenvolvimento com halteres", muscle: "shoulders", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 75 },
-          { name: "Afundos com halteres", muscle: "quads", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 75, note: "Repetições por perna." },
-          { name: "Rosca alternada", muscle: "biceps", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 60 },
-          { name: "Extensão de tríceps acima da cabeça", muscle: "triceps", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 60 },
+          { name: "Afundos com halteres", muscle: "quads", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 75, note: "Reps per leg." },
+          { name: "Rosca alternada com halteres", muscle: "biceps", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 60 },
+          { name: "Extensão de tríceps atrás da cabeça com haltere", muscle: "triceps", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 60 },
           { name: "Prancha frontal", muscle: "abs", equipment: "bodyweight", sets: 3, reps: "40-60 s", rest: 45 }
         ]
       },
       {
-        name: "Casa B",
-        folder: "Casa com halteres",
-        notes: "Usa o kettlebell para o trabalho de cadeia posterior.",
+        name: "Home B",
+        folder: "Home Dumbbells",
+        notes: "Use the kettlebell for posterior-chain work.",
         exercises: [
-          { name: "Peso morto com halteres", muscle: "hamstrings", equipment: "dumbbell", sets: 4, reps: "8-10", rest: 120 },
-          { name: "Supino no chão com halteres", muscle: "chest", equipment: "dumbbell", sets: 4, reps: "8-12", rest: 90 },
-          { name: "Barra fixa", muscle: "back", equipment: "bodyweight", sets: 3, reps: "AMRAP", rest: 120, note: "Se precisares, usa uma banda de assistência." },
+          { name: "Peso morto romeno com halteres", muscle: "hamstrings", equipment: "dumbbell", sets: 4, reps: "8-10", rest: 120 },
+          { name: "Supino reto com halteres", muscle: "chest", equipment: "dumbbell", sets: 4, reps: "8-12", rest: 90 },
+          { name: "Barra fixa", muscle: "back", equipment: "bodyweight", sets: 3, reps: "AMRAP", rest: 120, note: "Use a resistance band for assistance if needed." },
           { name: "Elevação lateral com halteres", muscle: "shoulders", equipment: "dumbbell", sets: 3, reps: "12-15", rest: 60 },
-          { name: "Agachamento búlgaro", muscle: "quads", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 75 },
+          { name: "Agachamento búlgaro com halteres", muscle: "quads", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 75 },
           { name: "Rosca martelo", muscle: "biceps", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 60 },
-          { name: "Flexão de tríceps no banco", muscle: "triceps", equipment: "bodyweight", sets: 3, reps: "10-12", rest: 60 },
-          { name: "Elevação de gémeos em pé", muscle: "calves", equipment: "bodyweight", sets: 4, reps: "15-20", rest: 45 },
-          { name: "Swing com kettlebell", muscle: "glutes", equipment: "kettlebell", sets: 3, reps: "15-20", rest: 60, note: "Movimento de bacia, não de braços." }
+          { name: "Tríceps dips no banco", muscle: "triceps", equipment: "bodyweight", sets: 3, reps: "10-12", rest: 60 },
+          { name: "Elevação de gémeos no degrau", muscle: "calves", equipment: "bodyweight", sets: 4, reps: "15-20", rest: 45 },
+          { name: "Kettlebell swing", muscle: "fullbody", equipment: "kettlebell", sets: 3, reps: "15-20", rest: 60, note: "A hip movement, not an arm movement." }
         ]
       },
       {
-        name: "Casa C",
-        folder: "Casa com halteres",
-        notes: "Sessão com mais volume de ombros e braços.",
+        name: "Home C",
+        folder: "Home Dumbbells",
+        notes: "Session with more shoulder and arm volume.",
         exercises: [
           { name: "Agachamento sumo com haltere", muscle: "quads", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 90 },
           { name: "Supino inclinado com halteres", muscle: "chest", equipment: "dumbbell", sets: 4, reps: "8-12", rest: 90 },
           { name: "Remada curvada com halteres", muscle: "back", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 90 },
           { name: "Desenvolvimento Arnold", muscle: "shoulders", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 75 },
-          { name: "Elevação de gémeos sentado com halteres", muscle: "calves", equipment: "dumbbell", sets: 3, reps: "15-20", rest: 45 },
+          { name: "Elevação de gémeos com halteres", muscle: "calves", equipment: "dumbbell", sets: 3, reps: "15-20", rest: 45 },
           { name: "Rosca concentrada", muscle: "biceps", equipment: "dumbbell", sets: 3, reps: "12-15", rest: 45 },
           { name: "Extensão de tríceps deitado com halteres", muscle: "triceps", equipment: "dumbbell", sets: 3, reps: "10-12", rest: 60 },
           { name: "Abdominal bicicleta", muscle: "abs", equipment: "bodyweight", sets: 3, reps: "20-30", rest: 45 },
-          { name: "Prancha lateral", muscle: "abs", equipment: "bodyweight", sets: 3, reps: "30-40 s", rest: 45, note: "Cada lado." }
+          { name: "Prancha lateral", muscle: "abs", equipment: "bodyweight", sets: 3, reps: "30-40 s", rest: 45, note: "Each side." }
         ]
       }
     ]

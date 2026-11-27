@@ -1,8 +1,8 @@
 {
-  "name": "Ferro — Treino",
+  "name": "Ferro — Workout",
   "short_name": "Ferro",
-  "description": "Registo de treinos de ginásio, rotinas, progresso e medidas. Offline e sem contas.",
-  "lang": "pt-PT",
+  "description": "Gym workout logging, routines, progress and body measurements. Offline, no accounts.",
+  "lang": "en",
   "dir": "ltr",
   "start_url": "./",
   "scope": "./",

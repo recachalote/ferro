@@ -21,7 +21,7 @@
     try {
       if (v) localStorage.setItem(TOKEN_KEY, v);
       else localStorage.removeItem(TOKEN_KEY);
-    } catch (e) { throw new Error('Não foi possível guardar o token neste dispositivo.'); }
+    } catch (e) { throw new Error('Could not save the token on this device.'); }
   }
   function repo() { return String(cfg().repo || '').trim().replace(/^\/+|\/+$/g, ''); }
   function branch() { return String(cfg().branch || 'main').trim() || 'main'; }
@@ -47,7 +47,7 @@
   async function gh(path, opts) {
     opts = opts || {};
     var tk = getToken();
-    if (!tk) throw new Error('Falta o token do GitHub.');
+    if (!tk) throw new Error('GitHub token missing.');
     var res;
     try {
       res = await fetch(API + path, {
@@ -62,7 +62,7 @@
         cache: 'no-store',
       });
     } catch (e) {
-      throw new Error('Sem ligação ao GitHub. Verifica a internet.');
+      throw new Error('Cannot reach GitHub. Check your internet connection.');
     }
     var text = '';
     try { text = await res.text(); } catch (e) {}
@@ -70,10 +70,10 @@
     try { data = text ? JSON.parse(text) : null; } catch (e) {}
     if (!res.ok) {
       var msg = data && data.message ? data.message : ('HTTP ' + res.status);
-      if (res.status === 401) msg = 'Token inválido ou expirado.';
-      else if (res.status === 403) msg = 'Sem permissão. O token precisa de Contents: Read and write.';
-      else if (res.status === 404) msg = 'Repositório ou backup não encontrado.';
-      else if (res.status === 409) msg = 'Conflito ao gravar. Tenta outra vez.';
+      if (res.status === 401) msg = 'Invalid or expired token.';
+      else if (res.status === 403) msg = 'Permission denied. The token needs Contents: Read and write.';
+      else if (res.status === 404) msg = 'Repository or backup not found.';
+      else if (res.status === 409) msg = 'Save conflict. Try again.';
       var err = new Error(msg);
       err.status = res.status;
       throw err;
@@ -82,8 +82,8 @@
   }
 
   async function test() {
-    if (!repo()) throw new Error('Indica o repositório no formato owner/repo.');
-    if (!getToken()) throw new Error('Falta o token do GitHub.');
+    if (!repo()) throw new Error('Enter the repository as owner/repo.');
+    if (!getToken()) throw new Error('GitHub token missing.');
     var data = await gh('/repos/' + repo());
     return {
       fullName: data.full_name || repo(),
@@ -93,8 +93,8 @@
   }
 
   async function backupNow(reason) {
-    if (running) throw new Error('Já existe um backup em curso.');
-    if (!isConfigured()) throw new Error('Backup não configurado.');
+    if (running) throw new Error('A backup is already running.');
+    if (!isConfigured()) throw new Error('Backup is not configured.');
     running = true;
     try {
       var json = DB.serialize();
@@ -106,7 +106,7 @@
         if (e.status !== 404) throw e;
       }
       var body = {
-        message: 'Backup Ferro — ' + U.fmtDate(new Date(), 'full') + ', ' + U.fmtTimeOfDay(new Date()),
+        message: 'Ferro backup — ' + U.fmtDate(new Date(), 'full') + ', ' + U.fmtTimeOfDay(new Date()),
         content: b64enc(json),
         branch: branch(),
       };
@@ -131,9 +131,9 @@
   }
 
   async function restore() {
-    if (!isConfigured()) throw new Error('Backup não configurado.');
+    if (!isConfigured()) throw new Error('Backup is not configured.');
     var data = await gh('/repos/' + repo() + '/contents/backup.json?ref=' + encodeURIComponent(branch()));
-    if (!data || !data.content) throw new Error('Backup não encontrado no repositório.');
+    if (!data || !data.content) throw new Error('Backup not found in the repository.');
     var json = b64dec(data.content);
     var res = await DB.importAll(json);
     cfg().last = U.now();

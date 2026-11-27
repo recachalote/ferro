@@ -22,16 +22,16 @@
     return '<button class="item" data-w="' + w.id + '" style="align-items:flex-start;padding:12px 13px">' +
       '<div class="hist-date" style="width:38px"><div class="d">' + U.parse(w.start).getDate() + '</div><div class="m">' + U.monthShort(w.start) + '</div></div>' +
       '<div class="item-main"><div class="hist-name">' + U.esc(w.name) + (w.rating ? ' <span class="mini" style="color:var(--warn)">' + '★'.repeat(Math.min(5, w.rating)) + '</span>' : '') + '</div>' +
-      '<div class="hist-meta"><span>' + U.fmtDuration(st.duration) + '</span><span><b>' + U.int(DB.toDisplay(st.volume)) + '</b> ' + DB.unit + '</span><span>' + st.sets + ' séries</span></div>' +
+      '<div class="hist-meta"><span>' + U.fmtDuration(st.duration) + '</span><span><b>' + U.int(DB.toDisplay(st.volume)) + '</b> ' + DB.unit + '</span><span>' + st.sets + ' sets</span></div>' +
       '<div class="mini truncate" style="margin-top:3px;opacity:.75">' + U.esc(exNames) + (w.exercises.length > 2 ? ' +' + (w.exercises.length - 2) : '') + '</div></div>' +
       '<div class="chev" style="margin-top:6px">' + U.svg('right') + '</div></button>';
   }
 
   function emptyFor() {
     return UI.empty({
-      icon: 'calendar', title: selected ? 'Nada neste dia' : 'Mês sem treinos',
-      text: selected ? 'Escolhe outro dia ou limpa o filtro.' : 'Os treinos que terminares aparecem aqui.',
-      action: '<button class="btn btn-primary btn-sm" data-nav="/workout">Treinar agora</button>',
+      icon: 'calendar', title: selected ? 'Nothing on this day' : 'No workouts this month',
+      text: selected ? 'Pick another day or clear the filter.' : 'Workouts you finish appear here.',
+      action: '<button class="btn btn-primary btn-sm" data-nav="/workout">Train now</button>',
     });
   }
 
@@ -60,9 +60,9 @@
     for (var w2 = 0; w2 < 7; w2++) weekNames.push(U.DAYS_S[(fd + w2) % 7].charAt(0).toUpperCase());
 
     var calHtml = '<div class="cal"><div class="cal-head"><div class="cal-month">' + U.monthLabel(cursor) + '</div>' +
-      '<div class="cal-nav"><button data-mv="-1" aria-label="Mês anterior">' + U.svg('left') + '</button>' +
-      '<button data-today aria-label="Hoje">' + U.svg('target') + '</button>' +
-      '<button data-mv="1" aria-label="Mês seguinte">' + U.svg('right') + '</button></div></div>' +
+      '<div class="cal-nav"><button data-mv="-1" aria-label="Previous month">' + U.svg('left') + '</button>' +
+      '<button data-today aria-label="Today">' + U.svg('target') + '</button>' +
+      '<button data-mv="1" aria-label="Next month">' + U.svg('right') + '</button></div></div>' +
       '<div class="cal-week">' + weekNames.map(function (n) { return '<span>' + n + '</span>'; }).join('') + '</div>' +
       '<div class="cal-grid">' + cells.map(function (c) {
         if (!c) return '<div></div>';
@@ -74,25 +74,25 @@
       }).join('') + '</div>' +
       '<div class="divider" style="margin:10px 4px"></div>' +
       '<div class="row" style="padding:0 4px">' +
-      '<div class="center grow"><div class="strong num">' + list.length + '</div><div class="mini">treinos</div></div>' +
+      '<div class="center grow"><div class="strong num">' + list.length + '</div><div class="mini">workouts</div></div>' +
       '<div class="center grow"><div class="strong num">' + U.int(DB.toDisplay(U.sum(list, C.workoutVolume))) + '</div><div class="mini">' + DB.unit + ' volume</div></div>' +
-      '<div class="center grow"><div class="strong num">' + U.fmtDuration(U.sum(list, C.workoutDuration)) + '</div><div class="mini">tempo</div></div>' +
+      '<div class="center grow"><div class="strong num">' + U.fmtDuration(U.sum(list, C.workoutDuration)) + '</div><div class="mini">time</div></div>' +
       '</div></div>';
 
     var rows = filtered.map(rowFor).join('');
 
     var html = '<div class="screen">' +
-      '<header class="screen-head"><div class="page-head"><div><div class="eyebrow">' + DB.state.workouts.length + ' treinos no total</div><h1 class="page-title">Histórico</h1></div>' +
-      '<button class="icon-btn" data-nav="/progress" aria-label="Progresso">' + U.svg('chart') + '</button></div>' +
-      '<div class="search-bar"><input class="input" id="hs-q" placeholder="Pesquisar treino ou exercício" value="' + U.esc(query) + '"><svg class="ic" aria-hidden="true"><use href="#i-search"></use></svg></div>' +
+      '<header class="screen-head"><div class="page-head"><div><div class="eyebrow">' + DB.state.workouts.length + ' workouts in total</div><h1 class="page-title">History</h1></div>' +
+      '<button class="icon-btn" data-nav="/progress" aria-label="Progress">' + U.svg('chart') + '</button></div>' +
+      '<div class="search-bar"><input class="input" id="hs-q" placeholder="Search workout or exercise" value="' + U.esc(query) + '"><svg class="ic" aria-hidden="true"><use href="#i-search"></use></svg></div>' +
       '</header>' +
       '<div class="screen-body">' + calHtml +
-      '<div class="sec"><div class="sec-head"><div class="sec-title">' + (selected ? U.fmtDate(selected, 'long') : 'Treinos de ' + U.monthShort(cursor)) + '</div>' +
-      (selected ? '<button class="sec-link" data-clear>Limpar filtro</button>' : '<span class="mini" id="hs-count">' + filtered.length + '</span>') + '</div>' +
+      '<div class="sec"><div class="sec-head"><div class="sec-title">' + (selected ? U.fmtDate(selected, 'long') : 'Workouts in ' + U.monthShort(cursor)) + '</div>' +
+      (selected ? '<button class="sec-link" data-clear>Clear filter</button>' : '<span class="mini" id="hs-count">' + filtered.length + '</span>') + '</div>' +
       '<div class="list" id="hs-list">' + (rows || emptyFor()) + '</div></div></div></div>';
 
     return {
-      tab: 'history', title: 'Histórico', html: html,
+      tab: 'history', title: 'History', html: html,
       mount: function (root) {
         var qi = root.querySelector('#hs-q');
         qi.addEventListener('input', U.debounce(function () {
@@ -137,13 +137,13 @@
     var lines = [];
     lines.push('Ferro — ' + w.name);
     lines.push(U.fmtDate(w.start, 'full') + ' · ' + U.fmtDuration(st.duration));
-    lines.push('Volume ' + U.int(DB.toDisplay(st.volume)) + ' ' + DB.unit + ' · ' + st.sets + ' séries · ' + st.reps + ' reps');
+    lines.push('Volume ' + U.int(DB.toDisplay(st.volume)) + ' ' + DB.unit + ' · ' + st.sets + ' sets · ' + st.reps + ' reps');
     lines.push('');
     (w.exercises || []).forEach(function (b) {
       lines.push(DB.exercise(b.exerciseId).name);
       (b.sets || []).forEach(function (s) {
         var line = '  ' + (s.weight ? DB.fmtW(s.weight) + ' ' + DB.unit + ' × ' : '') + s.reps + (s.rpe ? ' @' + s.rpe : '');
-        if (s.type === 'warmup') line = '  (aquecimento) ' + line.trim();
+        if (s.type === 'warmup') line = '  (warm-up) ' + line.trim();
         lines.push(line);
       });
     });
@@ -187,26 +187,26 @@
     var html = '<div class="screen">' +
       '<header class="screen-head">' + UI.navHead({
         title: w.name, sub: U.fmtDate(w.start, 'long'),
-        right: '<button class="icon-btn" data-act="menu" aria-label="Opções">' + U.svg('more') + '</button>',
+        right: '<button class="icon-btn" data-act="menu" aria-label="Options">' + U.svg('more') + '</button>',
       }) + '</header>' +
       '<div class="screen-body">' +
       '<div class="detail-hero"><div class="row between"><div class="eyebrow">' + U.fmtTimeOfDay(w.start) + ' · ' + U.fmtDuration(st.duration) + '</div>' +
       (w.rating ? '<div style="color:var(--warn);font-size:13px;letter-spacing:2px">' + '★'.repeat(Math.min(5, w.rating)) + '</div>' : '') + '</div>' +
       '<div class="h1 mt-8">' + U.esc(w.name) + '</div>' +
       '<div class="stat-strip"><div class="s"><div class="v">' + U.int(DB.toDisplay(st.volume)) + '</div><div class="l">' + DB.unit + ' volume</div></div>' +
-      '<div class="s"><div class="v">' + st.sets + '</div><div class="l">séries</div></div>' +
-      '<div class="s"><div class="v">' + w.exercises.length + '</div><div class="l">exercícios</div></div></div></div>' +
-      '<div class="btn-row mt-12"><button class="btn btn-primary" data-act="repeat">' + U.svg('repeat') + 'Repetir</button>' +
-      '<button class="btn btn-soft" data-act="share">' + U.svg('share') + 'Partilhar</button></div>' +
-      (top.length ? '<div class="sec"><div class="sec-head"><div class="sec-title">Repartição muscular</div></div><div class="card"><div class="bars">' +
+      '<div class="s"><div class="v">' + st.sets + '</div><div class="l">sets</div></div>' +
+      '<div class="s"><div class="v">' + w.exercises.length + '</div><div class="l">exercises</div></div></div></div>' +
+      '<div class="btn-row mt-12"><button class="btn btn-primary" data-act="repeat">' + U.svg('repeat') + 'Repeat</button>' +
+      '<button class="btn btn-soft" data-act="share">' + U.svg('share') + 'Share</button></div>' +
+      (top.length ? '<div class="sec"><div class="sec-head"><div class="sec-title">Muscle breakdown</div></div><div class="card"><div class="bars">' +
         top.map(function (m) {
           return '<div class="bar-row"><div class="bar-name">' + UI.muscleDot(m) + C.muscle(m).label + '</div>' +
             '<div class="bar-track"><div class="bar-fill" style="width:' + Math.round(setsBy[m] / top[0] * 100) + '%;background:' + C.muscle(m).color + '"></div></div>' +
             '<div class="bar-val">' + (setsBy[m] % 1 ? U.num(setsBy[m], 1) : setsBy[m]) + '</div></div>';
         }).join('') + '</div></div></div>' : '') +
-      '<div class="sec"><div class="sec-head"><div class="sec-title">Exercícios</div><span class="mini">' + st.reps + ' reps · ' + U.int(DB.toDisplay(st.volume)) + ' ' + DB.unit + '</span></div>' +
+      '<div class="sec"><div class="sec-head"><div class="sec-title">Exercises</div><span class="mini">' + st.reps + ' reps · ' + U.int(DB.toDisplay(st.volume)) + ' ' + DB.unit + '</span></div>' +
       exHtml + '</div>' +
-      (w.notes ? '<div class="card mt-12"><div class="card-title mb-8">Notas</div><div class="sub" style="font-size:13px">' + U.esc(w.notes) + '</div></div>' : '') +
+      (w.notes ? '<div class="card mt-12"><div class="card-title mb-8">Notes</div><div class="sub" style="font-size:13px">' + U.esc(w.notes) + '</div></div>' : '') +
       '<div class="row between mt-16" style="gap:8px">' +
       (prev ? '<button class="btn btn-sm btn-ghost" data-goto="' + prev.id + '" style="flex:1;justify-content:flex-start">' + U.svg('left') + '<span class="truncate">' + U.esc(prev.name) + '</span></button>' : '<div style="flex:1"></div>') +
       (next ? '<button class="btn btn-sm btn-ghost" data-goto="' + next.id + '" style="flex:1;justify-content:flex-end"><span class="truncate">' + U.esc(next.name) + '</span>' + U.svg('right') + '</button>' : '<div style="flex:1"></div>') +
@@ -225,33 +225,33 @@
               F.app.go('/workout');
             }
             if (a === 'share') {
-              U.copy(workoutText(w)).then(function (ok) { UI.toast(ok ? 'Treino copiado' : 'Não foi possível copiar', ok ? 'ok' : 'err'); });
+              U.copy(workoutText(w)).then(function (ok) { UI.toast(ok ? 'Workout copied' : 'Could not copy', ok ? 'ok' : 'err'); });
             }
             if (a === 'menu') {
               UI.actions({
                 title: w.name,
                 options: [
-                  { label: 'Partilhar como texto', value: 'share', icon: 'share' },
-                  { label: 'Repetir treino', value: 'repeat', icon: 'repeat' },
-                  { label: 'Editar notas', value: 'notes', icon: 'note' },
-                  { label: 'Eliminar treino', value: 'del', icon: 'trash', danger: true },
+                  { label: 'Share as text', value: 'share', icon: 'share' },
+                  { label: 'Repeat workout', value: 'repeat', icon: 'repeat' },
+                  { label: 'Edit notes', value: 'notes', icon: 'note' },
+                  { label: 'Delete workout', value: 'del', icon: 'trash', danger: true },
                 ],
               }).then(function (v) {
                 if (!v) return;
-                if (v === 'share') U.copy(workoutText(w)).then(function (ok) { UI.toast(ok ? 'Copiado' : 'Falhou', ok ? 'ok' : 'err'); });
+                if (v === 'share') U.copy(workoutText(w)).then(function (ok) { UI.toast(ok ? 'Copied' : 'Failed', ok ? 'ok' : 'err'); });
                 if (v === 'repeat') { DB.repeatWorkout(w.id); F.app.go('/workout'); }
                 if (v === 'notes') {
-                  UI.prompt({ title: 'Notas do treino', label: 'Notas', value: w.notes || '', multiline: true }).then(function (txt) {
+                  UI.prompt({ title: 'Workout notes', label: 'Notes', value: w.notes || '', multiline: true }).then(function (txt) {
                     if (txt == null) return;
                     w.notes = txt.trim();
                     DB.save(true); DB.saveNow();
-                    UI.toast('Notas atualizadas'); F.app.refresh();
+                    UI.toast('Notes updated'); F.app.refresh();
                   });
                 }
                 if (v === 'del') {
-                  UI.confirm({ title: 'Eliminar treino?', message: 'Esta ação não pode ser desfeita.', confirmText: 'Eliminar', danger: true }).then(function (ok) {
+                  UI.confirm({ title: 'Delete workout?', message: 'This cannot be undone.', confirmText: 'Delete', danger: true }).then(function (ok) {
                     if (!ok) return;
-                    DB.deleteWorkout(w.id); UI.toast('Treino eliminado'); F.app.go('/history');
+                    DB.deleteWorkout(w.id); UI.toast('Workout deleted'); F.app.go('/history');
                   });
                 }
               });
@@ -269,9 +269,9 @@
       var w = DB.getWorkout(params.id);
       if (w) return detailView(w);
       return {
-        tab: 'history', title: 'Treino',
-        html: '<div class="screen"><header class="screen-head">' + UI.navHead({ title: 'Treino' }) + '</header><div class="screen-body">' +
-          UI.empty({ icon: 'info', title: 'Treino não encontrado', text: 'Pode ter sido eliminado.', action: '<button class="btn btn-primary btn-sm" data-nav="/history">Voltar ao histórico</button>' }) + '</div></div>',
+        tab: 'history', title: 'Workout',
+        html: '<div class="screen"><header class="screen-head">' + UI.navHead({ title: 'Workout' }) + '</header><div class="screen-body">' +
+          UI.empty({ icon: 'info', title: 'Workout not found', text: 'It may have been deleted.', action: '<button class="btn btn-primary btn-sm" data-nav="/history">Back to history</button>' }) + '</div></div>',
       };
     }
     return listView();

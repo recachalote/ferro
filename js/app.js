@@ -30,11 +30,11 @@
   ];
 
   var TABS = [
-    { view: 'home', path: '/', icon: 'home', label: 'Início' },
-    { view: 'routines', path: '/routines', icon: 'folder', label: 'Rotinas' },
-    { view: 'workout', path: '/workout', icon: 'dumbbell', label: 'Treinar', main: true },
-    { view: 'progress', path: '/progress', icon: 'chart', label: 'Progresso' },
-    { view: 'more', path: '/more', icon: 'grid', label: 'Mais' },
+    { view: 'home', path: '/', icon: 'home', label: 'Home' },
+    { view: 'routines', path: '/routines', icon: 'folder', label: 'Routines' },
+    { view: 'workout', path: '/workout', icon: 'dumbbell', label: 'Train', main: true },
+    { view: 'progress', path: '/progress', icon: 'chart', label: 'Progress' },
+    { view: 'more', path: '/more', icon: 'grid', label: 'More' },
   ];
   var TAB_OF = {
     home: 'home', workout: 'workout', routines: 'routines', progress: 'progress', more: 'more',
@@ -120,7 +120,7 @@
     var m = match(path);
     var fn = F.views[m.view];
     if (typeof fn !== 'function') {
-      viewEl.innerHTML = '<div class="screen"><div class="empty"><div class="empty-t">A carregar…</div></div></div>';
+      viewEl.innerHTML = '<div class="screen"><div class="empty"><div class="empty-t">Loading…</div></div></div>';
       return;
     }
     var y = App._keepScroll ? window.scrollY : 0;
@@ -133,9 +133,9 @@
       console.error(err);
       viewEl.innerHTML = '<div class="screen" style="padding-top:60px">' +
         '<div class="empty"><div class="empty-ic">' + U.svg('info') + '</div>' +
-        '<div class="empty-t">Algo falhou</div>' +
-        '<div class="empty-s">' + U.esc(err && err.message ? err.message : 'Erro inesperado') + '</div>' +
-        '<button class="btn btn-primary" onclick="location.reload()">Recarregar</button></div></div>';
+        '<div class="empty-t">Something went wrong</div>' +
+        '<div class="empty-s">' + U.esc(err && err.message ? err.message : 'Unexpected error') + '</div>' +
+        '<button class="btn btn-primary" onclick="location.reload()">Reload</button></div></div>';
       return;
     }
     if (!res) return;
@@ -148,7 +148,7 @@
     var screenEl = viewEl.querySelector('.screen');
     if (screenEl && keep) screenEl.style.animation = 'none';
     if (res.title) document.title = res.title + ' — Ferro';
-    else document.title = 'Ferro — Treino';
+    else document.title = 'Ferro — Workout';
     if (res.mount) {
       try { res.mount(viewEl, m.params); } catch (e) { console.error('mount:', e); }
     }
@@ -164,17 +164,17 @@
     F.views.more = function () {
       var s = DB.stats();
       var items = [
-        { path: '/history', icon: 'calendar', t: 'Histórico', s: s.workouts + ' treinos registados' },
-        { path: '/body', icon: 'scale', t: 'Corpo e medidas', s: 'Peso, medidas e fotos' },
-        { path: '/exercises', icon: 'book', t: 'Exercícios', s: DB.allExercises().length + ' na biblioteca' },
-        { path: '/tools', icon: 'calc', t: 'Ferramentas', s: '1RM, discos, temporizadores' },
-        { path: '/achievements', icon: 'trophy', t: 'Conquistas', s: 'Recordes e marcos' },
-        { path: '/settings', icon: 'gear', t: 'Definições', s: 'Perfil, unidades, dados' },
+        { path: '/history', icon: 'calendar', t: 'History', s: s.workouts + ' workouts logged' },
+        { path: '/body', icon: 'scale', t: 'Body & measurements', s: 'Weight, measurements and photos' },
+        { path: '/exercises', icon: 'book', t: 'Exercises', s: DB.allExercises().length + ' in the library' },
+        { path: '/tools', icon: 'calc', t: 'Tools', s: '1RM, plates, timers' },
+        { path: '/achievements', icon: 'trophy', t: 'Achievements', s: 'PRs and milestones' },
+        { path: '/settings', icon: 'gear', t: 'Settings', s: 'Profile, units, data' },
       ];
       return {
         tab: 'more',
-        title: 'Mais',
-        html: '<div class="screen"><header class="screen-head"><div class="page-head"><div><div class="eyebrow">Ferro</div><h1 class="page-title">Mais</h1></div>' +
+        title: 'More',
+        html: '<div class="screen"><header class="screen-head"><div class="page-head"><div><div class="eyebrow">Ferro</div><h1 class="page-title">More</h1></div>' +
           '<button class="avatar" data-nav="/settings">' + U.esc(U.initials(DB.settings.name || 'Eu')) + '</button></div></header>' +
           '<div class="screen-body">' +
           '<div class="list">' + items.map(function (it) {
@@ -184,8 +184,8 @@
           }).join('') + '</div>' +
           '<div class="card mt-16" style="text-align:center;padding:20px">' +
           '<div style="font-size:13px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--txt-2)">FERRO</div>' +
-          '<div class="mini mt-8">Tudo incluído · Sem contas · Offline<br>Os teus dados ficam neste dispositivo.</div>' +
-          '<div class="mini mt-8" style="opacity:.6">Versão 1.0</div>' +
+          '<div class="mini mt-8">Everything included · No accounts · Offline<br>Your data stays on this device.</div>' +
+          '<div class="mini mt-8" style="opacity:.6">Version 1.0</div>' +
           '</div></div></div>',
       };
     };
@@ -235,10 +235,10 @@
   }
 
   App.notifyPermission = function () {
-    if (!('Notification' in window)) { F.ui.toast('Este dispositivo não suporta notificações', 'err'); return; }
+    if (!('Notification' in window)) { F.ui.toast('This device does not support notifications', 'err'); return; }
     Notification.requestPermission().then(function (p) {
-      if (p === 'granted') F.ui.toast('Notificações activadas');
-      else F.ui.toast('Notificações não autorizadas', 'err');
+      if (p === 'granted') F.ui.toast('Notifications enabled');
+      else F.ui.toast('Notifications not allowed', 'err');
     });
   };
 
@@ -249,15 +249,15 @@
       return;
     }
     F.ui.sheet({
-      title: 'Instalar no iPhone',
+      title: 'Install on iPhone',
       body: '<div class="ios-hint" style="margin-bottom:14px">' + U.svg('info') +
-        '<div>No Safari, toca em <b>Partilhar</b> (quadrado com seta) e depois em <b>Adicionar ao ecrã principal</b>. Fica com um ícone próprio e abre em ecrã inteiro, como uma app.</div></div>' +
+        '<div>In Safari, tap <b>Share</b> (square with an arrow) and then <b>Add to Home Screen</b>. It gets its own icon and opens full screen, like an app.</div></div>' +
         '<div class="col gap-12">' +
-        '<div class="row gap-12"><div class="item-thumb">' + U.svg('share') + '</div><div class="item-main"><div class="item-title">1. Partilhar</div><div class="item-sub">Barra inferior do Safari</div></div></div>' +
-        '<div class="row gap-12"><div class="item-thumb">' + U.svg('plus') + '</div><div class="item-main"><div class="item-title">2. Adicionar ao ecrã principal</div><div class="item-sub">Desliza a lista de opções</div></div></div>' +
-        '<div class="row gap-12"><div class="item-thumb">' + U.svg('check') + '</div><div class="item-main"><div class="item-title">3. Adicionar</div><div class="item-sub">Passa a abrir sem barra do Safari</div></div></div>' +
+        '<div class="row gap-12"><div class="item-thumb">' + U.svg('share') + '</div><div class="item-main"><div class="item-title">1. Share</div><div class="item-sub">Safari bottom toolbar</div></div></div>' +
+        '<div class="row gap-12"><div class="item-thumb">' + U.svg('plus') + '</div><div class="item-main"><div class="item-title">2. Add to Home Screen</div><div class="item-sub">Scroll the options list</div></div></div>' +
+        '<div class="row gap-12"><div class="item-thumb">' + U.svg('check') + '</div><div class="item-main"><div class="item-title">3. Add</div><div class="item-sub">Opens without the Safari bar</div></div></div>' +
         '</div>',
-      foot: '<button class="btn btn-primary btn-block" data-sheet-close>Entendido</button>',
+      foot: '<button class="btn btn-primary btn-block" data-sheet-close>Got it</button>',
     });
   };
 

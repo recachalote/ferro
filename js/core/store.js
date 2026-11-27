@@ -96,7 +96,7 @@
       localStorage.setItem(KEY, JSON.stringify(state));
     } catch (e) {
       try { localStorage.removeItem(BACKUP_KEY); localStorage.setItem(KEY, JSON.stringify(state)); }
-      catch (e2) { if (F.ui && F.ui.toast) F.ui.toast('Armazenamento cheio — exporta os teus dados.', 'err'); }
+      catch (e2) { if (F.ui && F.ui.toast) F.ui.toast('Storage full — export your data.', 'err'); }
     }
     maybeBackup();
   }
@@ -161,19 +161,20 @@
     var list = [], map = {}, used = {};
     (window.FERRO_EXERCISES || []).forEach(function (row) {
       if (!row || !row[0]) return;
-      var name = String(row[0]);
-      var id = U.slug(name);
+      var ptName = String(row[0]);
+      var id = U.slug(ptName);
       if (used[id]) { var i = 2; while (used[id + '-' + i]) i++; id = id + '-' + i; }
       used[id] = 1;
+      var tr = (window.FERRO_EX_EN || {})[ptName] || {};
       var e = {
-        id: id, name: name,
+        id: id, name: tr.name || ptName, namePt: ptName,
         primary: row[1] || 'fullbody',
         secondary: Array.isArray(row[2]) ? row[2] : [],
         equipment: row[3] || 'other',
         mechanic: row[4] || 'compound',
         level: row[5] || 'intermediate',
-        aliases: row[6] || '',
-        tip: row[7] || '',
+        aliases: [row[6] || '', ptName].filter(Boolean).join(', '),
+        tip: tr.tip || row[7] || '',
         custom: false,
       };
       list.push(e); map[id] = e;
@@ -188,21 +189,25 @@
   DB.allExercises = function () { return buildExercises().list; };
   DB.exercise = function (id) {
     var m = buildExercises().map;
-    return m[id] || { id: id, name: 'Exercício removido', primary: 'fullbody', secondary: [], equipment: 'other', mechanic: 'compound', level: 'beginner', aliases: '', tip: '', custom: false, missing: true };
+    return m[id] || { id: id, name: 'Removed exercise', primary: 'fullbody', secondary: [], equipment: 'other', mechanic: 'compound', level: 'beginner', aliases: '', tip: '', custom: false, missing: true };
   };
   DB.hasExercise = function (id) { return !!buildExercises().map[id]; };
   DB.findExerciseByName = function (name, muscle) {
-    var n = U.norm(name);
+    var n = U.norm(name).trim();
+    if (!n) return null;
     var list = buildExercises().list;
-    var exact = list.filter(function (e) { return U.norm(e.name) === n; })[0];
+    function hay(e) { return U.norm([e.name, e.namePt, e.aliases].filter(Boolean).join(' ')); }
+    var exact = list.filter(function (e) {
+      return [e.name, e.namePt].concat(String(e.aliases || '').split(',')).some(function (x) { return U.norm(x).trim() === n; });
+    })[0];
     if (exact) return exact;
-    var inc = list.filter(function (e) { var en = U.norm(e.name); return en.indexOf(n) >= 0 || n.indexOf(en) >= 0; });
+    var inc = list.filter(function (e) { var h = hay(e); return h.indexOf(n) >= 0 || n.indexOf(h) >= 0; });
     if (inc.length) return inc[0];
     var words = n.split(/\s+/).filter(function (w) { return w.length > 2; });
     var best = null, bs = 0;
     list.forEach(function (e) {
-      var en = U.norm(e.name);
-      var sc = words.filter(function (w) { return en.indexOf(w) >= 0; }).length;
+      var h = hay(e);
+      var sc = words.filter(function (w) { return h.indexOf(w) >= 0; }).length;
       if (sc > bs) { bs = sc; best = e; }
     });
     if (best && bs > 0) return best;
@@ -223,9 +228,10 @@
       if (!nq) score = 1;
       else {
         var en = U.norm(e.name);
-        if (en === nq) score = 100;
-        else if (en.indexOf(nq) === 0) score = 85;
-        else if (en.indexOf(nq) > 0) score = 65;
+        var ptn = U.norm(e.namePt || '');
+        if (en === nq || ptn === nq) score = 100;
+        else if (en.indexOf(nq) === 0 || ptn.indexOf(nq) === 0) score = 85;
+        else if (en.indexOf(nq) > 0 || ptn.indexOf(nq) > 0) score = 65;
         else if (U.norm(e.aliases).indexOf(nq) >= 0) score = 45;
         else if (U.norm(C.muscle(e.primary).label).indexOf(nq) >= 0) score = 25;
         else {
@@ -303,7 +309,7 @@
     if (opts.routineId) routine = state.routines.filter(function (r) { return r.id === opts.routineId; })[0];
     var w = {
       id: U.uid('w'),
-      name: opts.name || (routine ? routine.name : 'Treino livre'),
+      name: opts.name || (routine ? routine.name : 'Free workout'),
       routineId: routine ? routine.id : null,
       start: U.now(),
       end: null,
@@ -391,7 +397,7 @@
     var has = w.exercises.some(function (ex) {
       return (ex.sets || []).some(function (s) { return s.done && Number(s.reps) > 0; });
     });
-    if (!has) return { error: 'Sem séries concluídas' };
+    if (!has) return { error: 'No completed sets' };
     w.end = U.now();
     w.duration = Math.max(1, Math.round((U.parse(w.end) - U.parse(w.start)) / 1000));
     if (meta.name) w.name = meta.name;
@@ -408,7 +414,7 @@
     state.workouts.sort(function (a, b) { return U.parse(b.start) - U.parse(a.start); });
     state.active = null;
     if (meta.bodyweight) DB.addWeight(U.todayKey(), meta.bodyweight, true);
-    var prs = C.detectPRs(workout, state.workouts.slice(1), DB.exercise);
+    var prs = C.detectPRs(workout, state.workouts.filter(function (w) { return w.id !== workout.id; }), DB.exercise);
     DB.save();
     if (F.backup && F.backup.maybeAuto) { try { F.backup.maybeAuto('treino'); } catch (e) {} }
     return { workout: workout, prs: prs };
@@ -421,7 +427,7 @@
   DB.repeatWorkout = function (id) {
     var old = DB.getWorkout(id);
     if (!old) return null;
-    if (state.active) return { error: 'Já existe um treino em curso' };
+    if (state.active) return { error: 'A workout is already in progress' };
     var w = {
       id: U.uid('w'), name: old.name, routineId: old.routineId || null,
       start: U.now(), end: null, notes: '', rating: 0, exercises: [],
@@ -461,7 +467,7 @@
   /* ---------- rotinas ---------- */
   DB.newRoutine = function (name) {
     return {
-      id: U.uid('r'), name: name || 'Nova rotina', folder: '', notes: '',
+      id: U.uid('r'), name: name || 'New routine', folder: '', notes: '',
       createdAt: U.now(), updatedAt: U.now(), exercises: [],
     };
   };
@@ -480,7 +486,7 @@
     var r = DB.getRoutine(id);
     if (!r) return null;
     var copy = JSON.parse(JSON.stringify(r));
-    copy.id = U.uid('r'); copy.name = r.name + ' (cópia)'; copy.createdAt = U.now(); copy.updatedAt = U.now();
+    copy.id = U.uid('r'); copy.name = r.name + ' (copy)'; copy.createdAt = U.now(); copy.updatedAt = U.now();
     copy.exercises = copy.exercises.map(function (e) { e.id = U.uid('re'); return e; });
     state.routines.unshift(copy);
     DB.save();
@@ -654,7 +660,7 @@
   DB.importAll = async function (text) {
     var payload = JSON.parse(text);
     var incoming = payload && payload.state ? payload.state : payload;
-    if (!incoming || !Array.isArray(incoming.workouts)) throw new Error('Ficheiro inválido');
+    if (!incoming || !Array.isArray(incoming.workouts)) throw new Error('Invalid file');
     state = normalize(incoming);
     exCache = null;
     applyTheme();
@@ -688,26 +694,26 @@
   /* ---------- dados de demonstração ---------- */
   DB.loadDemo = function () {
     var defs = [
-      { name: 'Empurrar', ex: [
+      { name: 'Push', ex: [
         ['Supino reto com barra', 'chest', 60, 2.5], ['Supino inclinado com halteres', 'chest', 22, 1],
         ['Desenvolvimento militar com barra', 'shoulders', 35, 1.5], ['Elevação lateral com halteres', 'shoulders', 10, 0.5],
-        ['Extensão de tríceps na corda', 'triceps', 25, 1], ['Mergulhos em paralelas', 'triceps', 0, 0],
+        ['Extensão de tríceps com corda', 'triceps', 25, 1], ['Tríceps dips nas paralelas', 'triceps', 0, 0],
       ]},
-      { name: 'Puxar', ex: [
-        ['Puxada frontal com barra', 'back', 55, 2], ['Remada curvada com barra', 'back', 50, 2],
-        ['Remada baixa com triângulo', 'back', 45, 1.5], ['Face pull', 'shoulders', 20, 0.5],
-        ['Rosca direta com barra', 'biceps', 25, 1], ['Rosca martelo com halteres', 'biceps', 12, 0.5],
+      { name: 'Pull', ex: [
+        ['Puxada frontal', 'back', 55, 2], ['Remada curvada com barra', 'back', 50, 2],
+        ['Remada baixa', 'back', 45, 1.5], ['Face pull', 'shoulders', 20, 0.5],
+        ['Rosca direta com barra', 'biceps', 25, 1], ['Rosca martelo', 'biceps', 12, 0.5],
       ]},
-      { name: 'Pernas', ex: [
-        ['Agachamento com barra', 'quads', 80, 3], ['Peso morto romeno', 'hamstrings', 70, 3],
-        ['Leg press 45°', 'quads', 120, 4], ['Cadeira extensora', 'quads', 45, 2],
-        ['Cadeira flexora', 'hamstrings', 40, 1.5], ['Elevação de gémeos em pé', 'calves', 60, 2],
+      { name: 'Legs', ex: [
+        ['Agachamento livre com barra', 'quads', 80, 3], ['Peso morto romeno com barra', 'hamstrings', 70, 3],
+        ['Leg press', 'quads', 120, 4], ['Cadeira extensora', 'quads', 45, 2],
+        ['Cadeira flexora', 'hamstrings', 40, 1.5], ['Elevação de gémeos em pé na máquina', 'calves', 60, 2],
       ]},
     ];
     var routines = defs.map(function (d) {
       var r = DB.newRoutine(d.name);
-      r.folder = 'Exemplo';
-      r.notes = 'Rotina de exemplo gerada pelo Ferro.';
+      r.folder = 'Example';
+      r.notes = 'Sample routine generated by Ferro.';
       r.exercises = d.ex.map(function (x) {
         var def = DB.findExerciseByName(x[0], x[1]);
         return {
@@ -723,11 +729,12 @@
     for (var week = 0; week < 10; week++) {
       for (var d = 0; d < 3; d++) {
         var day = U.addDays(start, week * 7 + [0, 2, 4][d]);
-        if (U.startOfDay(day) > U.startOfDay(new Date())) continue;
+        var when = new Date(day.getFullYear(), day.getMonth(), day.getDate(), 18, 10);
+        if (when > new Date()) continue;
         var r = routines[d];
         var w = {
           id: U.uid('w'), name: r.routine.name, routineId: r.routine.id,
-          start: new Date(day.getFullYear(), day.getMonth(), day.getDate(), 18, 10).toISOString(),
+          start: when.toISOString(),
           end: null, notes: '', rating: 4, exercises: [],
         };
         w.exercises = r.routine.exercises.map(function (re, idx) {
@@ -758,7 +765,7 @@
     DB.addMeasurement({ date: U.addDays(new Date(), -2), weight: 76.1, bodyfat: 15.1, waist: 80.5, chest: 104, arm: 37.2, thigh: 59 });
     DB.addCheckin({ sleep: 4, energy: 4, soreness: 2, stress: 2, note: '' });
     state.meta.demo = true;
-    if (!state.settings.name) state.settings.name = 'Atleta';
+    if (!state.settings.name) state.settings.name = 'Athlete';
     DB.save();
     return count;
   };

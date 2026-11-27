@@ -76,7 +76,7 @@
     return Math.max(0, Math.ceil((T.endAt - Date.now()) / 1000));
   };
   T.isRunning = function () { return T.running; };
-  T.labelText = function () { return T.label || 'Descanso'; };
+  T.labelText = function () { return T.label || 'Rest'; };
 
   function persist() {
     try {
@@ -88,7 +88,7 @@
   T.start = function (seconds, label) {
     var secs = Math.max(1, Math.round(Number(seconds) || 0));
     T.total = secs;
-    T.label = label || 'Descanso';
+    T.label = label || 'Rest';
     T.endAt = Date.now() + secs * 1000;
     T.running = true;
     T.done = false;
@@ -162,7 +162,7 @@
     var s = settings();
     if (s.sound !== false) beep('done');
     if (s.vibrate !== false) U.haptic([120, 70, 120]);
-    notify('Descanso terminado', T.labelText() === 'Descanso' ? 'Próxima série.' : 'Descanso de ' + T.labelText() + ' terminado.');
+    notify('Rest finished', T.labelText() === 'Rest' ? 'Next set.' : 'Rest of ' + T.labelText() + ' finished.');
     render();
     restoreTitle();
     clearTimeout(T._doneTimer);
@@ -175,7 +175,7 @@
       document.title = U.fmtClock(rem) + ' · ' + T.labelText() + ' — Ferro';
     } catch (e) {}
   }
-  function restoreTitle() { try { document.title = 'Ferro — Treino'; } catch (e) {} }
+  function restoreTitle() { try { document.title = 'Ferro — Workout'; } catch (e) {} }
 
   function render() {
     var slot = document.getElementById('timer-slot');
@@ -184,7 +184,7 @@
     if (T.done) {
       slot.innerHTML = '<div class="timer-pill done" role="status">' +
         U.svg('check') +
-        '<div><div class="t">Pronto</div><div class="tl">Descanso terminado</div></div>' +
+        '<div><div class="t">Ready</div><div class="tl">Rest finished</div></div>' +
         '<button class="mini-btn" data-t-act="stop" aria-label="Fechar">' + U.svg('x') + '</button>' +
         '</div>';
       return;
@@ -192,8 +192,8 @@
     slot.innerHTML = '<div class="timer-pill" role="timer">' +
       U.svg('timer') +
       '<div><div class="t">' + U.fmtClock(T.remaining()) + '</div><div class="tl">' + U.esc(T.labelText()) + '</div></div>' +
-      '<button class="mini-btn" data-t-act="add" aria-label="Adicionar 15 segundos" style="font-size:10px;font-weight:700;width:auto;padding:0 8px;border-radius:99px">+15</button>' +
-      '<button class="mini-btn" data-t-act="stop" aria-label="Parar">' + U.svg('x') + '</button>' +
+      '<button class="mini-btn" data-t-act="add" aria-label="Add 15 seconds" style="font-size:10px;font-weight:700;width:auto;padding:0 8px;border-radius:99px">+15</button>' +
+      '<button class="mini-btn" data-t-act="stop" aria-label="Stop">' + U.svg('x') + '</button>' +
       '</div>';
   }
 
@@ -206,7 +206,7 @@
       var d = JSON.parse(raw);
       if (!d || !d.endAt) return;
       if (d.endAt <= Date.now()) { localStorage.removeItem(KEY); return; }
-      T.endAt = d.endAt; T.total = d.total || 0; T.label = d.label || 'Descanso';
+      T.endAt = d.endAt; T.total = d.total || 0; T.label = d.label || 'Rest';
       T.running = true; T.done = false;
       startTicker();
       render();

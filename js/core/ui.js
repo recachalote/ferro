@@ -32,7 +32,7 @@
     var footHtml = opts.foot ? '<div class="sheet-foot">' + opts.foot + '</div>' : '';
     var headHtml = opts.title ? '<div class="sheet-head"><div><div class="sheet-title">' + U.esc(opts.title) + '</div>' +
       (opts.sub ? '<div class="sheet-sub">' + U.esc(opts.sub) + '</div>' : '') + '</div>' +
-      '<button class="sheet-close" data-sheet-close aria-label="Fechar">' + U.svg('x') + '</button></div>' : '';
+      '<button class="sheet-close" data-sheet-close aria-label="Close">' + U.svg('x') + '</button></div>' : '';
     wrap.innerHTML = '<div class="sheet-backdrop"></div><div class="sheet-panel ' + (opts.tall ? 'tall' : '') + '">' +
       '<div class="sheet-grip"></div>' + headHtml +
       '<div class="sheet-body">' + (opts.body || '') + '</div>' + footHtml + '</div>';
@@ -118,10 +118,10 @@
     return new Promise(function (resolve) {
       var done = false;
       var s = UI.sheet({
-        title: opts.title || 'Confirmar',
+        title: opts.title || 'Confirm',
         body: '<p class="sub" style="font-size:14px;line-height:1.5">' + U.esc(opts.message || '') + '</p>',
-        foot: '<button class="btn btn-soft" data-no>' + U.esc(opts.cancelText || 'Cancelar') + '</button>' +
-          '<button class="btn ' + (opts.danger ? 'btn-danger' : 'btn-primary') + '" data-yes>' + U.esc(opts.confirmText || 'Confirmar') + '</button>',
+        foot: '<button class="btn btn-soft" data-no>' + U.esc(opts.cancelText || 'Cancel') + '</button>' +
+          '<button class="btn ' + (opts.danger ? 'btn-danger' : 'btn-primary') + '" data-yes>' + U.esc(opts.confirmText || 'Confirm') + '</button>',
         onClose: function () { if (!done) resolve(false); },
       });
       if (!s) return resolve(false);
@@ -136,13 +136,13 @@
     return new Promise(function (resolve) {
       var done = false;
       var s = UI.sheet({
-        title: opts.title || 'Editar',
-        body: '<div class="field"><label class="label">' + U.esc(opts.label || 'Valor') + '</label>' +
+        title: opts.title || 'Edit',
+        body: '<div class="field"><label class="label">' + U.esc(opts.label || 'Value') + '</label>' +
           (opts.multiline
             ? '<textarea class="textarea" data-input placeholder="' + U.esc(opts.placeholder || '') + '">' + U.esc(opts.value || '') + '</textarea>'
             : '<input class="input" data-input type="' + (opts.type || 'text') + '" inputmode="' + (opts.inputmode || 'text') + '" value="' + U.esc(opts.value || '') + '" placeholder="' + U.esc(opts.placeholder || '') + '">') +
           '</div>',
-        foot: '<button class="btn btn-soft" data-no>Cancelar</button><button class="btn btn-primary" data-yes>' + U.esc(opts.confirmText || 'Guardar') + '</button>',
+        foot: '<button class="btn btn-soft" data-no>Cancel</button><button class="btn btn-primary" data-yes>' + U.esc(opts.confirmText || 'Save') + '</button>',
         onClose: function () { if (!done) resolve(null); },
         onMount: function (x) {
           var inp = x.body.querySelector('[data-input]');
@@ -170,7 +170,7 @@
           '</button>';
       }).join('') + '</div>';
       var s = UI.sheet({
-        title: opts.title || 'Opções', body: body, sub: opts.sub,
+        title: opts.title || 'Options', body: body, sub: opts.sub,
         onClose: function () { if (!done) resolve(null); },
       });
       if (!s) return resolve(null);
@@ -195,7 +195,7 @@
   /* ---------- nav head ---------- */
   UI.navHead = function (o) {
     return '<div class="nav-head">' +
-      (o.back === false ? '<div></div>' : '<button class="icon-btn" data-nav="back" aria-label="Voltar">' + U.svg('left') + '</button>') +
+      (o.back === false ? '<div></div>' : '<button class="icon-btn" data-nav="back" aria-label="Back">' + U.svg('left') + '</button>') +
       '<div><div class="nav-title">' + U.esc(o.title) + '</div>' + (o.sub ? '<div class="nav-sub">' + U.esc(o.sub) + '</div>' : '') + '</div>' +
       '<div style="justify-self:end">' + (o.right || '') + '</div>' +
       '</div>';
@@ -214,20 +214,20 @@
       var q = '', muscle = '', equipment = '', onlyFav = false;
       var picked = false;
       var sheet = UI.sheet({
-        title: opts.title || 'Escolher exercício',
+        title: opts.title || 'Choose exercise',
         tall: true,
         body:
           '<div style="position:sticky;top:-16px;background:var(--bg-2);padding:2px 0 8px;z-index:3">' +
-          '<div class="search-bar">' + U.svg('search') + '<input class="input" id="pk-q" placeholder="Pesquisar 234 exercícios…" autocomplete="off" autocapitalize="off"></div>' +
+          '<div class="search-bar">' + U.svg('search') + '<input class="input" id="pk-q" placeholder="Search 234 exercises…" autocomplete="off" autocapitalize="off"></div>' +
           '<div class="chips" id="pk-muscles" style="margin-top:8px"></div>' +
           '<div class="row gap-8" style="margin-top:8px">' +
-          '<select class="input sm" id="pk-equip" style="flex:1"><option value="">Todos os equipamentos</option>' +
+          '<select class="input sm" id="pk-equip" style="flex:1"><option value="">All equipment</option>' +
           Object.keys(F.calc.EQUIP).map(function (k) { return '<option value="' + k + '">' + F.calc.EQUIP[k] + '</option>'; }).join('') +
           '</select>' +
-          '<button class="chip' + (opts.favorites ? ' on' : '') + '" id="pk-fav">' + U.svg('star') + 'Favoritos</button>' +
+          '<button class="chip' + (opts.favorites ? ' on' : '') + '" id="pk-fav">' + U.svg('star') + 'Favorites</button>' +
           '</div></div>' +
           '<div class="list" id="pk-list" style="margin-top:10px"></div>',
-        foot: '<button class="btn btn-soft btn-block" id="pk-create">' + U.svg('plus') + 'Criar exercício</button>',
+        foot: '<button class="btn btn-soft btn-block" id="pk-create">' + U.svg('plus') + 'Create exercise</button>',
         onClose: function () { if (!picked) resolve(null); },
       });
       if (!sheet) return resolve(null);
@@ -235,7 +235,7 @@
       function renderChips() {
         var list = F.calc.MUSCLE_ORDER.filter(function (m) { return F.calc.MUSCLES[m]; });
         sheet.body.querySelector('#pk-muscles').innerHTML =
-          '<button class="chip' + (!muscle ? ' on' : '') + '" data-m="">Todos</button>' +
+          '<button class="chip' + (!muscle ? ' on' : '') + '" data-m="">All</button>' +
           list.map(function (m) {
             return '<button class="chip' + (muscle === m ? ' on' : '') + '" data-m="' + m + '">' +
               '<span class="muscle-dot" style="background:' + F.calc.muscle(m).color + '"></span>' + F.calc.muscle(m).label + '</button>';
@@ -245,7 +245,7 @@
         var res = F.db.searchExercises(q, { muscle: muscle, equipment: equipment, favorites: onlyFav });
         var el = sheet.body.querySelector('#pk-list');
         if (!res.length) {
-          el.innerHTML = UI.empty({ icon: 'search', title: 'Sem resultados', text: 'Tenta outro nome ou cria um exercício personalizado.' });
+          el.innerHTML = UI.empty({ icon: 'search', title: 'No results', text: 'Try another name or create a custom exercise.' });
           return;
         }
         el.innerHTML = res.slice(0, 300).map(function (e) {
@@ -254,7 +254,7 @@
             '<div class="ex-lib-ic" style="background:' + m.color + '1c;color:' + m.color + '">' + U.svg('dumbbell') + '</div>' +
             '<div class="ex-lib-main"><div class="ex-lib-name">' + U.esc(e.name) + '</div>' +
             '<div class="ex-lib-meta">' + U.esc(m.label) + '<span class="dot-sep"></span>' + U.esc(F.calc.EQUIP[e.equipment] || '') + '</div></div>' +
-            '<button class="fav-btn' + (F.db.isFavorite(e.id) ? ' on' : '') + '" data-fav="' + e.id + '" aria-label="Favorito">' + U.svg('star') + '</button>' +
+            '<button class="fav-btn' + (F.db.isFavorite(e.id) ? ' on' : '') + '" data-fav="' + e.id + '" aria-label="Favorite">' + U.svg('star') + '</button>' +
             '</div>';
         }).join('');
       }
@@ -289,10 +289,12 @@
         renderList();
       });
       sheet.root.querySelector('#pk-create').addEventListener('click', function () {
+        picked = true;
         sheet.close();
         UI.createExercise().then(function (ex) {
-          picked = true;
           resolve(ex || null);
+        }).catch(function () {
+          resolve(null);
         });
       });
     });
@@ -309,35 +311,35 @@
         return '<option value="' + k + '"' + (prefill.equipment === k ? ' selected' : '') + '>' + F.calc.EQUIP[k] + '</option>';
       }).join('');
       var s = UI.sheet({
-        title: 'Novo exercício',
+        title: 'New exercise',
         body:
-          '<div class="field"><label class="label">Nome</label><input class="input" id="ce-name" placeholder="Ex.: Supino com pausa" value="' + U.esc(prefill.name || '') + '"></div>' +
-          '<div class="input-row"><div class="field" style="flex:1"><label class="label">Músculo principal</label><select class="select" id="ce-muscle">' + muscleOpts + '</select></div>' +
-          '<div class="field" style="flex:1"><label class="label">Equipamento</label><select class="select" id="ce-equip">' + equipOpts + '</select></div></div>' +
-          '<div class="field"><label class="label">Tipo</label><div class="seg" id="ce-mech">' +
-          '<button class="seg-item on" data-v="compound">Composto</button><button class="seg-item" data-v="isolation">Isolamento</button><button class="seg-item" data-v="cardio">Cardio</button></div></div>' +
-          '<div class="field"><label class="label">Dica técnica (opcional)</label><textarea class="textarea" id="ce-tip" placeholder="Ex.: pausa de 2 segundos no peito"></textarea></div>',
-        foot: '<button class="btn btn-soft" data-no>Cancelar</button><button class="btn btn-primary" data-yes>Adicionar</button>',
+          '<div class="field"><label class="label">Name</label><input class="input" id="ce-name" placeholder="E.g. Pause bench press" value="' + U.esc(prefill.name || '') + '"></div>' +
+          '<div class="input-row"><div class="field" style="flex:1"><label class="label">Primary muscle</label><select class="select" id="ce-muscle">' + muscleOpts + '</select></div>' +
+          '<div class="field" style="flex:1"><label class="label">Equipment</label><select class="select" id="ce-equip">' + equipOpts + '</select></div></div>' +
+          '<div class="field"><label class="label">Type</label><div class="seg" id="ce-mech">' +
+          '<button class="seg-item on" data-v="compound">Compound</button><button class="seg-item" data-v="isolation">Isolation</button><button class="seg-item" data-v="cardio">Cardio</button></div></div>' +
+          '<div class="field"><label class="label">Technique tip (optional)</label><textarea class="textarea" id="ce-tip" placeholder="E.g. 2-second pause on the chest"></textarea></div>',
+        foot: '<button class="btn btn-soft" data-no>Cancel</button><button class="btn btn-primary" data-yes>Add</button>',
         onClose: function () { if (!done) resolve(null); },
-        onMount: function () {
+        onMount: function (x) {
           var mech = 'compound';
-          s.root.querySelectorAll('#ce-mech .seg-item').forEach(function (b) {
+          x.root.querySelectorAll('#ce-mech .seg-item').forEach(function (b) {
             b.addEventListener('click', function () {
-              s.root.querySelectorAll('#ce-mech .seg-item').forEach(function (x) { x.classList.remove('on'); });
+              x.root.querySelectorAll('#ce-mech .seg-item').forEach(function (y) { y.classList.remove('on'); });
               b.classList.add('on'); mech = b.getAttribute('data-v');
             });
           });
-          s.root.querySelector('[data-yes]').addEventListener('click', function () {
-            var name = s.root.querySelector('#ce-name').value.trim();
-            if (!name) { UI.toast('Dá um nome ao exercício', 'err'); return; }
+          x.root.querySelector('[data-yes]').addEventListener('click', function () {
+            var name = x.root.querySelector('#ce-name').value.trim();
+            if (!name) { UI.toast('Give the exercise a name', 'err'); return; }
             var ex = F.db.addCustomExercise({
               name: name,
-              primary: s.root.querySelector('#ce-muscle').value,
-              equipment: s.root.querySelector('#ce-equip').value,
+              primary: x.root.querySelector('#ce-muscle').value,
+              equipment: x.root.querySelector('#ce-equip').value,
               mechanic: mech,
-              tip: s.root.querySelector('#ce-tip').value.trim(),
+              tip: x.root.querySelector('#ce-tip').value.trim(),
             });
-            done = true; resolve(ex); s.close(); UI.toast('Exercício criado');
+            done = true; resolve(ex); x.close(); UI.toast('Exercise created');
           });
         },
       });
@@ -350,13 +352,13 @@
   UI.plateSheet = function (initialWeight) {
     var st = F.db.settings;
     var s = UI.sheet({
-      title: 'Calculadora de discos',
-      sub: 'Barra de ' + U.num(st.bar || 20, 0) + ' kg · por lado',
+      title: 'Plate calculator',
+      sub: 'Bar of ' + U.num(st.bar || 20, 0) + ' kg · per side',
       body:
-        '<div class="input-suffix" style="margin-bottom:14px"><input class="input num" id="pl-in" inputmode="decimal" value="' + (initialWeight ? U.num(F.db.toDisplay(initialWeight), 1) : '') + '" placeholder="Peso total"><span class="sfx">' + F.db.unit + '</span></div>' +
+        '<div class="input-suffix" style="margin-bottom:14px"><input class="input num" id="pl-in" inputmode="decimal" value="' + (initialWeight ? U.num(F.db.toDisplay(initialWeight), 1) : '') + '" placeholder="Total weight"><span class="sfx">' + F.db.unit + '</span></div>' +
         '<div class="plate-vis" id="pl-vis"></div>' +
         '<div class="plate-legend" id="pl-leg"></div>' +
-        '<div class="calc-out" style="margin-top:14px"><div class="l">Total na barra</div><div class="v" id="pl-total">—</div><div class="mini" id="pl-note" style="margin-top:4px"></div></div>',
+        '<div class="calc-out" style="margin-top:14px"><div class="l">Total on bar</div><div class="v" id="pl-total">—</div><div class="mini" id="pl-note" style="margin-top:4px"></div></div>',
     });
     if (!s) return;
     var input = s.root.querySelector('#pl-in');
@@ -369,7 +371,7 @@
       var total = s.root.querySelector('#pl-total');
       var note = s.root.querySelector('#pl-note');
       if (res.error || !res.perSide.length) {
-        vis.innerHTML = '<div class="mini">' + U.esc(res.error || 'Sem discos para este peso.') + '</div>';
+        vis.innerHTML = '<div class="mini">' + U.esc(res.error || 'No plates for this weight.') + '</div>';
         leg.innerHTML = '';
         total.textContent = '—';
         note.textContent = '';
@@ -386,7 +388,7 @@
         return '<span class="pl-badge">' + U.num(p, p % 1 ? 2 : 0) + ' kg × ' + counts[p] + '</span>';
       }).join('');
       total.innerHTML = U.num(F.db.toDisplay(res.achieved), 1) + ' <small>' + F.db.unit + '</small>';
-      note.textContent = res.exact ? 'Exato' : 'Faltam ' + U.num(F.db.toDisplay(Math.abs(res.diff)), 1) + ' ' + F.db.unit + ' para o alvo';
+      note.textContent = res.exact ? 'Exact' : U.num(F.db.toDisplay(Math.abs(res.diff)), 1) + ' ' + F.db.unit + ' short of target';
     }
     input.addEventListener('input', U.debounce(render, 60));
     setTimeout(function () { input.focus(); }, 250);
@@ -405,9 +407,9 @@
   };
   UI.greeting = function () {
     var h = new Date().getHours();
-    if (h < 6) return 'Boa madrugada';
-    if (h < 13) return 'Bom dia';
-    if (h < 20) return 'Boa tarde';
-    return 'Boa noite';
+    if (h < 6) return 'Good night';
+    if (h < 13) return 'Good morning';
+    if (h < 20) return 'Good afternoon';
+    return 'Good evening';
   };
 })();

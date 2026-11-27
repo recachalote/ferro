@@ -40,14 +40,14 @@
   U.round = function (v, dec) { var m = Math.pow(10, dec || 0); return Math.round((Number(v) || 0) * m) / m; };
   U.num = function (n, dec) {
     if (n == null || n === '' || isNaN(Number(n))) return '—';
-    return Number(n).toLocaleString('pt-PT', {
+    return Number(n).toLocaleString('en-GB', {
       minimumFractionDigits: dec || 0,
       maximumFractionDigits: dec == null ? 0 : dec,
     });
   };
   U.int = function (n) {
     if (n == null || isNaN(Number(n))) return '—';
-    return Number(n).toLocaleString('pt-PT', { maximumFractionDigits: 0 });
+    return Number(n).toLocaleString('en-GB', { maximumFractionDigits: 0 });
   };
   U.pct = function (part, total) { return total ? Math.round((part / total) * 100) : 0; };
   U.sum = function (arr, fn) {
@@ -81,10 +81,10 @@
   };
 
   /* ---------- dates ---------- */
-  var MONTHS = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
-  var MONTHS_S = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
-  var DAYS = ['domingo', 'segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado'];
-  var DAYS_S = ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb'];
+  var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  var MONTHS_S = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  var DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  var DAYS_S = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   U.MONTHS = MONTHS; U.MONTHS_S = MONTHS_S; U.DAYS = DAYS; U.DAYS_S = DAYS_S;
 
   U.parse = function (d) {
@@ -123,8 +123,8 @@
   U.weekdayShort = function (d) { return DAYS_S[U.parse(d).getDay()]; };
   U.fmtDate = function (d, style) {
     var x = U.parse(d);
-    if (style === 'long') return DAYS[x.getDay()] + ', ' + x.getDate() + ' de ' + MONTHS[x.getMonth()];
-    if (style === 'full') return DAYS[x.getDay()] + ', ' + x.getDate() + ' de ' + MONTHS[x.getMonth()] + ' de ' + x.getFullYear();
+    if (style === 'long') return DAYS[x.getDay()] + ', ' + x.getDate() + ' ' + MONTHS[x.getMonth()];
+    if (style === 'full') return DAYS[x.getDay()] + ', ' + x.getDate() + ' ' + MONTHS[x.getMonth()] + ' ' + x.getFullYear();
     if (style === 'short') return x.getDate() + ' ' + MONTHS_S[x.getMonth()];
     if (style === 'numeric') return String(x.getDate()).padStart(2, '0') + '/' + String(x.getMonth() + 1).padStart(2, '0') + '/' + x.getFullYear();
     return x.getDate() + ' ' + MONTHS_S[x.getMonth()] + ' ' + x.getFullYear();
@@ -134,15 +134,15 @@
     var x = U.parse(d);
     return String(x.getHours()).padStart(2, '0') + ':' + String(x.getMinutes()).padStart(2, '0');
   };
-  /** "Hoje", "Ontem", "Há 3 dias", "12 nov" */
+  /** "Today", "Yesterday", "3 days ago", "12 Nov" */
   U.relative = function (d) {
     var diff = U.diffDays(new Date(), d);
-    if (diff === 0) return 'Hoje';
-    if (diff === 1) return 'Ontem';
-    if (diff === -1) return 'Amanhã';
-    if (diff > 1 && diff < 7) return 'Há ' + diff + ' dias';
-    if (diff >= 7 && diff < 14) return 'Há 1 semana';
-    if (diff >= 14 && diff < 60) return 'Há ' + Math.round(diff / 7) + ' semanas';
+    if (diff === 0) return 'Today';
+    if (diff === 1) return 'Yesterday';
+    if (diff === -1) return 'Tomorrow';
+    if (diff > 1 && diff < 7) return diff + ' days ago';
+    if (diff >= 7 && diff < 14) return '1 week ago';
+    if (diff >= 14 && diff < 60) return Math.round(diff / 7) + ' weeks ago';
     return U.fmtDate(d, 'short');
   };
   U.fmtDuration = function (secs) {
@@ -315,7 +315,7 @@
   function openDB() {
     if (idbPromise) return idbPromise;
     idbPromise = new Promise(function (resolve, reject) {
-      if (!window.indexedDB) return reject(new Error('Sem IndexedDB'));
+      if (!window.indexedDB) return reject(new Error('No IndexedDB'));
       var req = indexedDB.open('ferro-db', 1);
       req.onupgradeneeded = function () {
         var db = req.result;
