@@ -11,6 +11,8 @@
   C.MUSCLES = {
     chest: { label: 'Chest', color: '#FF7A6B', group: 'push' },
     back: { label: 'Back', color: '#6FB8FF', group: 'pull' },
+    lats: { label: 'Lats', color: '#3D9BF5', group: 'pull' },
+    upperback: { label: 'Upper Back', color: '#7ED0E8', group: 'pull' },
     shoulders: { label: 'Shoulders', color: '#FFC65C', group: 'push' },
     biceps: { label: 'Biceps', color: '#A99BFF', group: 'pull' },
     triceps: { label: 'Triceps', color: '#7DE0C3', group: 'push' },
@@ -18,6 +20,7 @@
     quads: { label: 'Quads', color: '#C9F45A', group: 'legs' },
     hamstrings: { label: 'Hamstrings', color: '#5BD1A6', group: 'legs' },
     glutes: { label: 'Glutes', color: '#FF9BC4', group: 'legs' },
+    adductors: { label: 'Adductors', color: '#9BE15D', group: 'legs' },
     calves: { label: 'Calves', color: '#E8D06B', group: 'legs' },
     abs: { label: 'Abs', color: '#FFA36B', group: 'core' },
     lowerback: { label: 'Lower back', color: '#9EB3C8', group: 'core' },
@@ -25,7 +28,9 @@
     neck: { label: 'Neck', color: '#C2AFA8', group: 'core' },
     fullbody: { label: 'Full body', color: '#D6DCE5', group: 'full' },
   };
-  C.MUSCLE_ORDER = ['chest', 'back', 'shoulders', 'biceps', 'triceps', 'forearms', 'quads', 'hamstrings', 'glutes', 'calves', 'abs', 'lowerback', 'traps', 'neck', 'fullbody'];
+  C.MUSCLE_ORDER = ['chest', 'lats', 'upperback', 'back', 'shoulders', 'biceps', 'triceps', 'forearms', 'quads', 'hamstrings', 'glutes', 'adductors', 'calves', 'abs', 'lowerback', 'traps', 'neck', 'fullbody'];
+  /* Muscle groups offered when creating a custom exercise. */
+  C.CREATE_MUSCLES = ['chest', 'lats', 'upperback', 'shoulders', 'biceps', 'triceps', 'forearms', 'quads', 'hamstrings', 'glutes', 'adductors', 'calves', 'abs'];
   C.EQUIP = {
     barbell: 'Barbell', dumbbell: 'Dumbbells', machine: 'Machine', cable: 'Cable', smith: 'Smith',
     ezbar: 'EZ bar', kettlebell: 'Kettlebell', bodyweight: 'Bodyweight', bands: 'Bands',

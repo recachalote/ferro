@@ -305,7 +305,7 @@
     prefill = prefill || {};
     return new Promise(function (resolve) {
       var done = false;
-      var muscleOpts = F.calc.MUSCLE_ORDER.filter(function (m) { return F.calc.MUSCLES[m]; })
+      var muscleOpts = F.calc.CREATE_MUSCLES.filter(function (m) { return F.calc.MUSCLES[m]; })
         .map(function (m) { return '<option value="' + m + '"' + (prefill.primary === m ? ' selected' : '') + '>' + F.calc.muscle(m).label + '</option>'; }).join('');
       var equipOpts = Object.keys(F.calc.EQUIP).map(function (k) {
         return '<option value="' + k + '"' + (prefill.equipment === k ? ' selected' : '') + '>' + F.calc.EQUIP[k] + '</option>';

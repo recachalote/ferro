@@ -1,5 +1,5 @@
 /* Ferro — service worker (offline) */
-const CACHE = 'ferro-v4';
+const CACHE = 'ferro-v5';
 const ASSETS = [
   './',
   'index.html',
